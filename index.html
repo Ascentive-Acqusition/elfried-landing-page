@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elfried Samba — Community Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --ink: #080808;
+            --white: #fafaf7;
+            --grey: #6b6b6b;
+            --light: #f0ede7;
+            --accent: #c8b89a;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--ink);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ── CURSOR ── */
+        .cur {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--white);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .3s var(--ease), height .3s var(--ease);
+            mix-blend-mode: difference;
+        }
+
+        .cur.big {
+            width: 44px;
+            height: 44px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 300;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 72px;
+            mix-blend-mode: difference;
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: .28em;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-items a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: .62rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            opacity: .4;
+            transition: opacity .3s;
+        }
+
+        .nav-items a:hover {
+            opacity: 1;
+        }
+
+        /* ════════════════════════════════
+   HERO  — 55/45 split
+════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 55fr 45fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 110px 60px 72px 72px;
+            position: relative;
+            z-index: 2;
+            animation: rise 1.6s var(--ease) both;
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(48px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HERO RIGHT — full-bleed portrait */
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(to right, var(--ink) 0%, transparent 24%),
+                linear-gradient(to bottom, var(--ink) 0%, transparent 7%),
+                linear-gradient(to top, var(--ink) 0%, transparent 7%);
+            pointer-events: none;
+        }
+
+        .hero-right::after {
+            content: 'ELF';
+            position: absolute;
+            bottom: -3vw;
+            right: -2vw;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22vw;
+            line-height: .8;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, .04);
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-portrait {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            opacity: .9;
+        }
+
+        .hero-portrait .ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-size: .6rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        /* hero text */
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .58rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-tag {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(.9rem, 1.2vw, .98rem);
+            color: rgba(250, 250, 247, .38);
+            letter-spacing: .04em;
+            margin-bottom: 14px;
+        }
+
+        .hero-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(5rem, 8.5vw, 10rem);
+            line-height: .87;
+            letter-spacing: -.01em;
+            margin-bottom: 24px;
+        }
+
+        .hero-name em {
+            font-style: normal;
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--white);
+        }
+
+        .hero-intro {
+            font-size: clamp(.92rem, 1.2vw, 1rem);
+            line-height: 1.78;
+            color: rgba(250, 250, 247, .42);
+            max-width: 460px;
+            margin-bottom: 44px;
+        }
+
+        .hero-intro strong {
+            color: rgba(250, 250, 247, .82);
+            font-weight: 400;
+        }
+
+        /* 4 TILES */
+        .tiles {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            max-width: 500px;
+        }
+
+        .tile {
+            position: relative;
+            padding: 17px 22px 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .055);
+            border: 1px solid rgba(255, 255, 255, .11);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            cursor: none;
+            overflow: hidden;
+            transition: background .3s var(--ease), border-color .3s var(--ease), transform .22s var(--ease);
+        }
+
+        .tile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .08) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .tile:hover {
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .24);
+            transform: translateY(-2px);
+        }
+
+        .tile:hover::before {
+            opacity: 1;
+        }
+
+        .tile:active {
+            transform: scale(.977);
+        }
+
+        .tile .rpl {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .12);
+            width: 8px;
+            height: 8px;
+            transform: scale(0);
+            animation: rplA .55s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rplA {
+            to {
+                transform: scale(40);
+                opacity: 0;
+            }
+        }
+
+        .tile-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .tile-meta {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .tile-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .65rem;
+            letter-spacing: .2em;
+            color: rgba(255, 255, 255, .24);
+        }
+
+        .tile-icon {
+            font-size: .9rem;
+        }
+
+        .tile-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.08rem;
+            letter-spacing: .1em;
+            color: var(--white);
+        }
+
+        .tile-arr {
+            font-size: .78rem;
+            opacity: .26;
+            transition: opacity .3s, transform .3s;
+        }
+
+        .tile:hover .tile-arr {
+            opacity: .62;
+            transform: translateX(3px);
+        }
+
+        .tile-desc {
+            font-size: .68rem;
+            line-height: 1.56;
+            color: rgba(255, 255, 255, .36);
+        }
+
+        /* follow nudge */
+        .follow-nudge {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .6rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .26);
+            text-decoration: none;
+            cursor: none;
+            transition: color .3s;
+        }
+
+        .follow-nudge:hover {
+            color: rgba(255, 250, 247, .58);
+        }
+
+        .follow-nudge::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: currentColor;
+            transition: width .3s;
+        }
+
+        .follow-nudge:hover::before {
+            width: 32px;
+        }
+
+        /* ════════════════════════════════
+   PHILOSOPHY + DAY TO DAY
+   Two-col dark section below hero
+════════════════════════════════ */
+        .phil-sect {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .phil-col {
+            padding: 80px 72px;
+            border-right: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .phil-col:last-child {
+            border-right: none;
+        }
+
+        .phil-label {
+            font-size: .55rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phil-label::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .phil-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            line-height: .9;
+            letter-spacing: .03em;
+            margin-bottom: 28px;
+        }
+
+        .phil-body {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .phil-body p {
+            font-size: .9rem;
+            line-height: 1.86;
+            color: rgba(250, 250, 247, .42);
+        }
+
+        .phil-body p strong {
+            color: rgba(250, 250, 247, .78);
+            font-weight: 400;
+        }
+
+        .phil-bullet {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 4px;
+        }
+
+        .phil-item {}
+
+        .phil-item-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: .08em;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .phil-item p {
+            font-size: .88rem;
+            line-height: 1.82;
+            color: rgba(250, 250, 247, .4);
+        }
+
+        /* ════════════════════════════════
+   TICKER
+════════════════════════════════ */
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            padding: 14px 0;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: tick 34s linear infinite;
+        }
+
+        .ticker-item {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .82rem;
+            letter-spacing: .22em;
+            color: rgba(255, 255, 255, .18);
+            padding: 0 36px;
+            flex-shrink: 0;
+        }
+
+        .tsep {
+            color: rgba(255, 255, 255, .07);
+        }
+
+        @keyframes tick {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ════════════════════════════════
+   STORY
+════════════════════════════════ */
+        .story-sect {
+            padding: 110px 72px;
+        }
+
+        .sect-label {
+            font-size: .56rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sect-label::after {
+            content: '';
+            width: 44px;
+            height: 1px;
+            background: var(--grey);
+        }
+
+        .story-layout {
+            display: grid;
+            grid-template-columns: 38fr 62fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        .story-img-col {}
+
+        .story-single-img {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, .07);
+            width: 100%;
+        }
+
+        .story-single-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--ink) 0%, transparent 20%, transparent 80%, var(--ink) 100%),
+                linear-gradient(to bottom, var(--ink) 0%, transparent 10%, transparent 90%, var(--ink) 100%);
+            pointer-events: none;
+        }
+
+        .story-single-img img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            opacity: .88;
+        }
+
+        .story-single-img .ph {
+            aspect-ratio: 2/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .55rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #2a2a2a;
+        }
+
+        .story-text {
+            padding-top: 6px;
+        }
+
+        .story-pull {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3vw, 3rem);
+            font-weight: 300;
+            line-height: 1.12;
+            margin-bottom: 30px;
+        }
+
+        .story-pull strong {
+            font-family: 'Bebas Neue', sans-serif;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--white);
+            display: block;
+            font-size: 1.1em;
+            letter-spacing: .03em;
+            margin-top: 4px;
+        }
+
+        .story-body {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .story-body p {
+            font-size: .95rem;
+            line-height: 1.88;
+            color: rgba(250, 250, 247, .4);
+        }
+
+        .story-body p.hl {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.06rem;
+            color: rgba(250, 250, 247, .72);
+            border-left: 1px solid var(--accent);
+            padding-left: 18px;
+        }
+
+        /* keyword highlights */
+        .kw {
+            color: rgba(250, 250, 247, .18);
+            transition: color .65s var(--ease);
+            font-weight: 400;
+        }
+
+        .kw.lit {
+            color: var(--white);
+        }
+
+        /* ════════════════════════════════
+   STATS
+════════════════════════════════ */
+        .stats-band {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            margin: 0 72px;
+        }
+
+        .stat {
+            padding: 52px 40px;
+            border-right: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-n {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 4vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-n span {
+            color: var(--accent);
+        }
+
+        .stat-l {
+            font-size: .6rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--grey);
+        }
+
+        /* ════════════════════════════════
+   FOUR WAYS TO CO-CREATE
+════════════════════════════════ */
+        .ways-sect {
+            padding: 110px 72px 120px;
+        }
+
+        .ways-sect .sect-label {
+            margin-bottom: 72px;
+        }
+
+        .ways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .way {
+            background: var(--ink);
+            padding: 56px 52px 52px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .way::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity .4s;
+        }
+
+        .way:hover::before {
+            opacity: 1;
+        }
+
+        .way-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .7rem;
+            letter-spacing: .24em;
+            color: rgba(255, 255, 255, .2);
+            margin-bottom: 20px;
+        }
+
+        .way-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            letter-spacing: .04em;
+            line-height: .92;
+            margin-bottom: 6px;
+        }
+
+        .way-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(.88rem, 1.2vw, .98rem);
+            color: var(--accent);
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .way-body {
+            font-size: .9rem;
+            line-height: 1.84;
+            color: rgba(250, 250, 247, .42);
+            flex: 1;
+            margin-bottom: 36px;
+        }
+
+        .way-body strong {
+            color: rgba(250, 250, 247, .72);
+            font-weight: 400;
+        }
+
+        .way-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .95rem;
+            letter-spacing: .12em;
+            color: var(--white);
+            text-decoration: none;
+            cursor: none;
+            padding: 13px 28px;
+            border: 1px solid rgba(255, 255, 255, .22);
+            position: relative;
+            overflow: hidden;
+            transition: border-color .35s, color .35s;
+            align-self: flex-start;
+        }
+
+        .way-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--white);
+            transform: translateX(-102%);
+            transition: transform .4s var(--ease);
+            z-index: 0;
+        }
+
+        .way-cta:hover {
+            border-color: var(--white);
+            color: var(--ink);
+        }
+
+        .way-cta:hover::before {
+            transform: translateX(0);
+        }
+
+        .way-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* brands within way card */
+        .way-brands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 16px 0 24px;
+        }
+
+        .way-brand {
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            padding: 5px 11px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .45);
+        }
+
+        /* ════════════════════════════════
+   FOLLOW THE JOURNEY
+════════════════════════════════ */
+        .follow-sect {
+            background: var(--light);
+            color: var(--ink);
+            padding: 112px 72px 120px;
+        }
+
+        .follow-sect .sect-label {
+            color: #999;
+        }
+
+        .follow-sect .sect-label::after {
+            background: #999;
+        }
+
+        .follow-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: end;
+            margin-bottom: 72px;
+        }
+
+        .follow-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 6.5rem);
+            line-height: .88;
+        }
+
+        .follow-header h2 em {
+            font-style: normal;
+            -webkit-text-stroke: 1.5px var(--ink);
+            color: transparent;
+        }
+
+        .follow-header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(.95rem, 1.5vw, 1.2rem);
+            line-height: 1.72;
+            color: #777;
+        }
+
+        .follow-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .fl {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px;
+            background: var(--ink);
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+            transition: background .35s var(--ease);
+        }
+
+        .fl::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: translateX(-102%);
+            transition: transform .45s var(--ease);
+            z-index: 0;
+        }
+
+        .fl:hover::before {
+            transform: translateX(0);
+        }
+
+        .fl-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .fl-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .fl-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: .1em;
+            display: block;
+            transition: color .35s;
+        }
+
+        .fl-sub {
+            font-size: .65rem;
+            letter-spacing: .08em;
+            color: rgba(255, 255, 255, .38);
+            display: block;
+            margin-top: 3px;
+            transition: color .35s;
+        }
+
+        .fl-arr {
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            opacity: .28;
+            transition: opacity .3s, transform .3s, color .35s;
+            color: var(--white);
+        }
+
+        .fl:hover .fl-arr {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .fl:hover .fl-title,
+        .fl:hover .fl-sub,
+        .fl:hover .fl-arr {
+            color: var(--ink);
+        }
+
+        /* ════════════════════════════════
+   HUB OVERLAYS
+════════════════════════════════ */
+        .hub-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .5s var(--ease);
+        }
+
+        .hub-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .hub-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            backdrop-filter: blur(8px);
+        }
+
+        .hub-panel {
+            position: relative;
+            z-index: 1;
+            margin-left: auto;
+            width: min(800px, 96vw);
+            height: 100vh;
+            overflow-y: auto;
+            background: var(--ink);
+            transform: translateX(80px);
+            transition: transform .55s var(--ease);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, .08) transparent;
+        }
+
+        .hub-overlay.open .hub-panel {
+            transform: translateX(0);
+        }
+
+        .hub-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 44px;
+            background: var(--ink);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .hub-close-btn {
+            font-size: .56rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            background: none;
+            border: none;
+            color: var(--white);
+            opacity: .35;
+            transition: opacity .3s;
+            cursor: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .hub-close-btn:hover {
+            opacity: 1;
+        }
+
+        .hub-quick {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .58rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+            cursor: none;
+            opacity: .52;
+            transition: opacity .3s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .hub-quick:hover {
+            opacity: 1;
+        }
+
+        .hub-quick::after {
+            content: '↗';
+            margin-left: 2px;
+        }
+
+        .hub-body {
+            padding: 0 56px 88px;
+        }
+
+        .hub-ey {
+            font-size: .52rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+
+        .hub-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+            line-height: .88;
+            letter-spacing: .02em;
+            margin-bottom: 22px;
+        }
+
+        .hub-title em {
+            font-style: normal;
+            -webkit-text-stroke: 1.5px var(--white);
+            color: transparent;
+        }
+
+        .hub-lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(.95rem, 1.6vw, 1.15rem);
+            line-height: 1.72;
+            opacity: .58;
+            margin-bottom: 36px;
+            border-left: 1px solid var(--accent);
+            padding-left: 18px;
+        }
+
+        .hub-body p {
+            font-size: .88rem;
+            line-height: 1.88;
+            opacity: .48;
+            margin-bottom: 16px;
+        }
+
+        .hub-body p.em {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            opacity: .72;
+        }
+
+        .hub-rule {
+            height: 1px;
+            background: rgba(255, 255, 255, .09);
+            margin: 40px 0;
+        }
+
+        .hub-sh {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: .07em;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        /* image strips */
+        .hub-imgs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin: 18px 0 32px;
+        }
+
+        .hub-img {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .hub-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(8, 8, 8, .85) 100%), linear-gradient(to bottom, rgba(8, 8, 8, .5) 0%, transparent 25%, transparent 75%, rgba(8, 8, 8, .5) 100%);
+            pointer-events: none;
+        }
+
+        .hub-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: .8;
+        }
+
+        .hub-img .ph {
+            aspect-ratio: 3/2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .5rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #222;
+        }
+
+        /* badges / tags */
+        .event-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 14px 0 28px;
+        }
+
+        .badge {
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            font-size: .6rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .58);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 24px;
+        }
+
+        .tag {
+            padding: 6px 13px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .09);
+            font-size: .58rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .42);
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, .09);
+            margin: 14px 0 26px;
+        }
+
+        .brand-cell {
+            background: var(--ink);
+            padding: 20px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: .95rem;
+            letter-spacing: .1em;
+            color: rgba(255, 255, 255, .65);
+            transition: background .3s;
+        }
+
+        .brand-cell:hover {
+            background: #181818;
+        }
+
+        .csocials {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin: 14px 0 26px;
+        }
+
+        .csocial {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .07);
+            text-decoration: none;
+            color: var(--white);
+            transition: all .3s var(--ease);
+            cursor: none;
+        }
+
+        .csocial:hover {
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(255, 255, 255, .18);
+            transform: translateX(4px);
+        }
+
+        .csocial-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: .08em;
+        }
+
+        .csocial-desc {
+            font-size: .6rem;
+            color: var(--grey);
+            margin-top: 2px;
+        }
+
+        .csocial-arr {
+            opacity: .26;
+            font-size: .85rem;
+        }
+
+        /* form */
+        .hub-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-top: 24px;
+        }
+
+        .fld {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fld label {
+            font-size: .5rem;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+            padding: 14px 18px 5px;
+            background: rgba(255, 255, 255, .055);
+            color: var(--grey);
+        }
+
+        .fld input,
+        .fld textarea {
+            background: rgba(255, 255, 255, .055);
+            border: none;
+            outline: none;
+            padding: 6px 18px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .9rem;
+            color: var(--white);
+            transition: background .3s;
+        }
+
+        .fld input:focus,
+        .fld textarea:focus {
+            background: rgba(255, 255, 255, .1);
+        }
+
+        .fld textarea {
+            resize: none;
+            height: 108px;
+        }
+
+        .frow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .form-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+
+        .form-note {
+            font-size: .6rem;
+            opacity: .3;
+            letter-spacing: .06em;
+        }
+
+        .btn-sub {
+            background: var(--white);
+            color: var(--ink);
+            border: none;
+            padding: 14px 44px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .66rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            cursor: none;
+            transition: background .3s;
+        }
+
+        .btn-sub:hover {
+            background: var(--accent);
+        }
+
+        /* hub bottom CTA link */
+        .hub-cta {
+            display: inline-block;
+            padding: 15px 36px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: .14em;
+            text-decoration: none;
+            cursor: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform .2s var(--ease);
+        }
+
+        .hub-cta:active {
+            transform: scale(.97);
+        }
+
+        .hub-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: translateX(-102%);
+            transition: transform .4s var(--ease);
+            z-index: 0;
+        }
+
+        .hub-cta:hover::before {
+            transform: translateX(0);
+        }
+
+        .hub-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hub-cta-solid {
+            background: var(--white);
+            color: var(--ink);
+        }
+
+        .hub-cta-solid:hover {
+            color: var(--ink);
+        }
+
+        /* ── FADE REVEAL ── */
+        .fade {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .85s var(--ease), transform .85s var(--ease);
+        }
+
+        .fade.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .d1 {
+            transition-delay: .07s;
+        }
+
+        .d2 {
+            transition-delay: .14s;
+        }
+
+        .d3 {
+            transition-delay: .21s;
+        }
+
+        .d4 {
+            transition-delay: .28s;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1100px) {
+            nav {
+                padding: 24px 48px;
+            }
+
+            .hero-left {
+                padding: 100px 44px 64px 52px;
+            }
+
+            .phil-col {
+                padding: 64px 52px;
+            }
+
+            .story-sect,
+            .ways-sect {
+                padding: 90px 52px;
+            }
+
+            .stats-band {
+                margin: 0 52px;
+            }
+
+            .follow-sect {
+                padding: 90px 52px 100px;
+            }
+        }
+
+        @media(max-width:820px) {
+            nav {
+                padding: 20px 24px;
+            }
+
+            .nav-items {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: 45vh 1fr;
+            }
+
+            .hero-right {
+                grid-row: 1;
+            }
+
+            .hero-left {
+                grid-row: 2;
+                padding: 44px 28px 56px;
+                justify-content: flex-start;
+            }
+
+            .hero-name {
+                font-size: clamp(3.5rem, 14vw, 6rem);
+            }
+
+            .tiles {
+                max-width: 100%;
+            }
+
+            .phil-sect {
+                grid-template-columns: 1fr;
+            }
+
+            .phil-col {
+                padding: 56px 28px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, .07);
+            }
+
+            .phil-col:last-child {
+                border-bottom: none;
+            }
+
+            .story-sect {
+                padding: 72px 28px;
+            }
+
+            .story-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .story-img-col {
+                display: none;
+            }
+
+            .stats-band {
+                grid-template-columns: 1fr 1fr;
+                margin: 0 28px;
+            }
+
+            .stat {
+                padding: 36px 24px;
+            }
+
+            .ways-sect {
+                padding: 72px 28px 88px;
+            }
+
+            .ways-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .way {
+                padding: 44px 32px 40px;
+            }
+
+            .follow-sect {
+                padding: 72px 28px 88px;
+            }
+
+            .follow-header {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .fl {
+                padding: 22px 24px;
+            }
+
+            .hub-body {
+                padding: 0 24px 64px;
+            }
+
+            .hub-header {
+                padding: 18px 24px;
+            }
+
+            .frow {
+                grid-template-columns: 1fr;
+            }
+
+            .hub-imgs {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .brand-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cur" id="C"></div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#top" class="nav-logo">ELF</a>
+        <ul class="nav-items">
+            <li><a href="#story">Story</a></li>
+            <li><a href="#ways">Work Together</a></li>
+            <li><a href="#journey">Follow</a></li>
+        </ul>
+    </nav>
+
+    <!-- ════════════════════════
+     HERO
+════════════════════════ -->
+    <section class="hero" id="top">
+        <div class="hero-left">
+            <div class="hero-eyebrow">Community Architect</div>
+            <p class="hero-tag">"I build and scale communities for brands."</p>
+            <h1 class="hero-name">Elfried<br><em>Samba.</em></h1>
+            <p class="hero-intro">
+                For over 15 years, I've worked inside the world's most cultural brands to solve the ultimate growth
+                puzzle.<br><br>
+                I don't obsess over spikes, campaigns, or noise. Those are temporary.<br>
+                I focus on <strong>building systems that compound.</strong><br><br>
+                <strong>Attention is rented. Trust is earned.</strong><br>
+                And that trust is not merely a growth asset — it's insurance.
+            </p>
+
+            <div class="tiles">
+                <div class="tile" onclick="openHub('butterfly');ripple(event,this)">
+                    <div class="tile-row">
+                        <div class="tile-meta"><span class="tile-num">01</span><span class="tile-icon">🦋</span><span
+                                class="tile-name">Butterfly Effect</span></div>
+                        <span class="tile-arr">→</span>
+                    </div>
+                    <div class="tile-desc">Community as infrastructure for founders and executive teams.</div>
+                </div>
+                <div class="tile" onclick="openHub('advisory');ripple(event,this)">
+                    <div class="tile-row">
+                        <div class="tile-meta"><span class="tile-num">02</span><span class="tile-icon">🎯</span><span
+                                class="tile-name">1:1 Advisory</span></div>
+                        <span class="tile-arr">→</span>
+                    </div>
+                    <div class="tile-desc">Strategic clarity for CEOs and founders navigating scale.</div>
+                </div>
+                <div class="tile" onclick="openHub('speaking');ripple(event,this)">
+                    <div class="tile-row">
+                        <div class="tile-meta"><span class="tile-num">03</span><span class="tile-icon">🎙️</span><span
+                                class="tile-name">Speaking</span></div>
+                        <span class="tile-arr">→</span>
+                    </div>
+                    <div class="tile-desc">Frameworks forged in the world's fastest-growing brands.</div>
+                </div>
+                <div class="tile" onclick="openHub('collab');ripple(event,this)">
+                    <div class="tile-row">
+                        <div class="tile-meta"><span class="tile-num">04</span><span class="tile-icon">🤝</span><span
+                                class="tile-name">Collaborate</span></div>
+                        <span class="tile-arr">→</span>
+                    </div>
+                    <div class="tile-desc">Selective partnerships with brands who value long-term trust.</div>
+                </div>
+            </div>
+
+            <a href="#journey" class="follow-nudge">Or just follow the journey</a>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-portrait">
+                <!-- Replace with: <img src="elfried.jpg" alt="Elfried Samba"> -->
+                <div class="ph">[ Photo of Elfried ]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     PHILOSOPHY + DAY TO DAY
+════════════════════════ -->
+    <div class="phil-sect fade">
+
+        <div class="phil-col">
+            <div class="phil-label">Philosophy</div>
+            <h2 class="phil-title">Two Lenses.<br>One System.</h2>
+            <div class="phil-body">
+                <p>I approach community through two distinct lenses to ensure growth is both <strong>cultural and
+                        commercial.</strong></p>
+                <div class="phil-bullet">
+                    <div class="phil-item">
+                        <div class="phil-item-title">Ecosystems</div>
+                        <p>Conversation drives commerce. Our goal is to ensure more people talk about you than you
+                            talking at them. We design the environment where your brand and your people coexist — the
+                            strategy, the narrative, and the behavioural science that turns a customer into an advocate.
+                        </p>
+                    </div>
+                    <div class="phil-item">
+                        <div class="phil-item-title">Infrastructure</div>
+                        <p>We don't just "run social." We give community control back to the brand by obsessing over the
+                            process of execution — building the systems, the processes, and the data-driven foundations
+                            that make community a <strong>reliable commercial lever.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phil-col">
+            <div class="phil-label">Day to Day</div>
+            <h2 class="phil-title">In the<br>Arena.</h2>
+            <div class="phil-body">
+                <p>As <strong>Co-Founder & CEO of Butterfly Effect</strong>, I help leadership teams turn community into
+                    a serious commercial lever. We don't just sell the map — we walk the terrain.</p>
+                <p>As a <strong>Creator</strong>, I document the build in real-time across my personal channels —
+                    sharing what I'm learning as I go. No manufactured certainty. Just honest thinking from inside the
+                    work.</p>
+                <p>As <strong>Co-Host of The Bottleneck Podcast</strong> alongside Rory Sutherland, we explore the
+                    friction between behavioural science, the ever-changing marketing space, and the messy reality of
+                    the creator economy.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span class="ticker-item">Bottleneck Podcast <span class="tsep">✦</span></span>
+            <span class="ticker-item">Community Architect <span class="tsep">✦</span></span>
+            <span class="ticker-item">Gymshark 1.5M → 20M+ <span class="tsep">✦</span></span>
+            <span class="ticker-item">15 Years in the Arena <span class="tsep">✦</span></span>
+            <span class="ticker-item">415K LinkedIn Followers <span class="tsep">✦</span></span>
+            <span class="ticker-item">250M+ Impressions <span class="tsep">✦</span></span>
+            <span class="ticker-item">Bottleneck Podcast <span class="tsep">✦</span></span>
+            <span class="ticker-item">Community Architect <span class="tsep">✦</span></span>
+            <span class="ticker-item">Gymshark 1.5M → 20M+ <span class="tsep">✦</span></span>
+            <span class="ticker-item">15 Years in the Arena <span class="tsep">✦</span></span>
+            <span class="ticker-item">415K LinkedIn Followers <span class="tsep">✦</span></span>
+            <span class="ticker-item">250M+ Impressions <span class="tsep">✦</span></span>
+        </div>
+    </div>
+
+    <!-- ════════════════════════
+     STORY
+════════════════════════ -->
+    <section class="story-sect fade" id="story">
+        <div class="sect-label">The Story</div>
+        <div class="story-layout">
+
+            <div class="story-img-col fade d1">
+                <div class="story-single-img">
+                    <!-- <img src="story.jpg" alt="Elfried Samba"> -->
+                    <div class="ph">[ Image ]</div>
+                </div>
+            </div>
+
+            <div class="story-text fade d2">
+                <div class="story-pull">
+                    I build and scale communities.<br>
+                    <strong>For brands. For people.</strong>
+                </div>
+                <div class="story-body" id="story-body">
+                    <p class="hl">"Attention is rented. Trust is earned. And that trust is not merely a growth asset —
+                        it's insurance."</p>
+                    <p>Born in Congo and raised in the UK, Elfried is recognised for his expertise in community
+                        building. Over the last <span class="kw" data-kw="0">15 years</span>, he has worked inside
+                        brands and alongside founders to understand what really drives growth. Not campaigns. Not
+                        trends. Systems.</p>
+                    <p>From <span class="kw" data-kw="1">scaling Gymshark from 1.5M to 20M+ followers</span>,
+                        contributing to a <span class="kw" data-kw="2">$1.7B valuation</span>, to advising global giants
+                        — he has learned one truth: community isn't a marketing channel. It's the <span class="kw"
+                            data-kw="3">strongest growth advantage on Earth</span>, if you treat people like people.</p>
+                    <p>In 2024, Favikon ranked him the <span class="kw" data-kw="4">second most influential LinkedIn
+                            creator globally</span>. With over <span class="kw" data-kw="5">415K followers</span>, his
+                        content has generated more than <span class="kw" data-kw="6">250 million impressions</span> and
+                        <span class="kw" data-kw="7">4.2 million engagements</span>.
+                    </p>
+                    <p>Today, as <span class="kw" data-kw="8">Co-Founder & CEO of Butterfly Effect</span>, he helps
+                        leadership teams turn community into a serious commercial lever. A system. Because attention is
+                        rented. Trust is earned. And trust compounds.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-band fade">
+        <div class="stat">
+            <div class="stat-n">1.5M<span>→</span>20M<span>+</span></div>
+            <div class="stat-l">Gymshark Community</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">415<span>K</span></div>
+            <div class="stat-l">LinkedIn Followers</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">250<span>M+</span></div>
+            <div class="stat-l">Content Impressions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">15<span>+</span></div>
+            <div class="stat-l">Years in the Arena</div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════
+     FOUR WAYS TO CO-CREATE
+════════════════════════ -->
+    <section class="ways-sect fade" id="ways">
+        <div class="sect-label">Four Ways to Co-Create</div>
+
+        <div class="ways-grid">
+
+            <!-- 01 BUTTERFLY EFFECT -->
+            <div class="way">
+                <div class="way-num">01</div>
+                <div class="way-title">Butterfly Effect</div>
+                <div class="way-sub">Community as Infrastructure.</div>
+                <div class="way-body">
+                    <p>We partner with founders and executive teams who want community to drive real business outcomes.
+                        Not vanity metrics. Not content calendars. A system that earns attention, builds trust, and
+                        creates advocates.</p>
+                    <p><strong>Track record:</strong> 30+ enterprise leaders including Netflix, Nike, Formula E, Square,
+                        McDonald's, and Bumble — alongside high-growth scale-ups like AU Vodka, Honest Greens, and
+                        YuLife.</p>
+                    <div class="way-brands">
+                        <span class="way-brand">Netflix</span><span class="way-brand">Nike</span><span
+                            class="way-brand">Formula E</span>
+                        <span class="way-brand">McDonald's</span><span class="way-brand">Bumble</span><span
+                            class="way-brand">Square</span>
+                        <span class="way-brand">AU Vodka</span><span class="way-brand">YuLife</span><span
+                            class="way-brand">Honest Greens</span>
+                    </div>
+                </div>
+                <a href="https://www.butterflyeffect.xyz" target="_blank" class="way-cta"><span>Work With Butterfly
+                        Effect →</span></a>
+            </div>
+
+            <!-- 02 ADVISORY -->
+            <div class="way">
+                <div class="way-num">02</div>
+                <div class="way-title">1:1 Advisory</div>
+                <div class="way-sub">Strategic Clarity for the Arena.</div>
+                <div class="way-body">
+                    <p>Direct, high-trust sessions for CEOs and founders navigating scale, repositioning, or building
+                        from scratch.</p>
+                    <p>Sometimes you don't need help doing. <strong>You need sharper thinking.</strong></p>
+                    <p>These are not coaching calls. This is direct access to hard-won perspective — built inside the
+                        world's fastest-growing brands and applied to your specific situation.</p>
+                </div>
+                <a href="#" onclick="openHub('advisory');return false;" class="way-cta"><span>Apply for Advisory
+                        →</span></a>
+            </div>
+
+            <!-- 03 SPEAKING -->
+            <div class="way">
+                <div class="way-num">03</div>
+                <div class="way-title">Speaking</div>
+                <div class="way-sub">Direct from the Arena.</div>
+                <div class="way-body">
+                    <p>Frameworks forged in the world's fastest-growing brands, delivered on stages where it counts.</p>
+                    <p>No theory — just lived experience transformed into <strong>stories that stick.</strong></p>
+                    <div class="way-brands">
+                        <span class="way-brand">TEDx</span><span class="way-brand">Cannes Lions</span>
+                        <span class="way-brand">1 Billion Followers Summit</span><span class="way-brand">Adobe
+                            MAX</span>
+                        <span class="way-brand">LinkedIn</span><span class="way-brand">The Marketing Society</span>
+                        <span class="way-brand">UK Black Business Show</span>
+                    </div>
+                </div>
+                <a href="#" onclick="openHub('speaking');return false;" class="way-cta"><span>Book a Keynote
+                        →</span></a>
+            </div>
+
+            <!-- 04 COLLABORATE -->
+            <div class="way">
+                <div class="way-num">04</div>
+                <div class="way-title">Collaborate</div>
+                <div class="way-sub">Selective Partnerships.</div>
+                <div class="way-body">
+                    <p>As a creator, Elfried has partnered with 50+ brands — exclusively with those who prioritise
+                        <strong>long-term trust over short-term noise.</strong>
+                    </p>
+                    <p>His audience is built on trust, not reach — which is why collaborations land differently.</p>
+                    <div class="way-brands">
+                        <span class="way-brand">LinkedIn</span><span class="way-brand">Adobe</span><span
+                            class="way-brand">Anthropic</span>
+                        <span class="way-brand">Notion</span><span class="way-brand">Semrush</span><span
+                            class="way-brand">Sprout Social</span>
+                    </div>
+                </div>
+                <a href="#" onclick="openHub('collab');return false;" class="way-cta"><span>Explore a Collaboration
+                        →</span></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     FOLLOW THE JOURNEY
+════════════════════════ -->
+    <section class="follow-sect" id="journey">
+        <div class="sect-label">Follow the Journey</div>
+        <div class="follow-header fade">
+            <h2>I share what<br>I'm <em>learning</em><br>as I build.</h2>
+            <p>No guru energy. No manufactured certainty. Just real thinking shared in real time — on LinkedIn,
+                Instagram, and in conversation with some of the sharpest minds in business.</p>
+        </div>
+        <div class="follow-links fade d1">
+            <a href="https://linkedin.com/in/elfriedsamba" target="_blank" class="fl">
+                <div class="fl-inner"><span class="fl-icon">💼</span>
+                    <div><span class="fl-title">LinkedIn</span><span class="fl-sub">415K followers · 2nd most
+                            influential creator globally (Favikon 2024)</span></div>
+                </div><span class="fl-arr">↗</span>
+            </a>
+            <a href="https://instagram.com/elfriedsamba" target="_blank" class="fl">
+                <div class="fl-inner"><span class="fl-icon">📸</span>
+                    <div><span class="fl-title">Instagram</span><span class="fl-sub">@elfriedsamba — culture, brand and
+                            community in real time</span></div>
+                </div><span class="fl-arr">↗</span>
+            </a>
+            <a href="https://www.youtube.com/@TheBottleneckPodcast" target="_blank" class="fl">
+                <div class="fl-inner"><span class="fl-icon">🎧</span>
+                    <div><span class="fl-title">Bottleneck Podcast</span><span class="fl-sub">With Rory Sutherland —
+                            brands, culture and contrarian thinking</span></div>
+                </div><span class="fl-arr">↗</span>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+     HUB 01 — BUTTERFLY EFFECT
+══════════════════════════════ -->
+    <div class="hub-overlay" id="hub-butterfly">
+        <div class="hub-backdrop" onclick="closeHub('butterfly')"></div>
+        <div class="hub-panel">
+            <div class="hub-header">
+                <button class="hub-close-btn" onclick="closeHub('butterfly')">Close ✕</button>
+                <a href="https://www.butterflyeffect.xyz" target="_blank" class="hub-quick">Work With Butterfly
+                    Effect</a>
+            </div>
+            <div class="hub-body">
+                <div class="hub-ey">01 — Butterfly Effect</div>
+                <h2 class="hub-title">Community as<br><em>Infrastructure.</em></h2>
+                <p class="hub-lead">"We partner with founders and executive teams who want community to drive real
+                    business outcomes. Not a campaign. A system."</p>
+                <div class="hub-imgs">
+                    <div class="hub-img">
+                        <div class="ph">[ Work ]</div>
+                    </div>
+                    <div class="hub-img">
+                        <div class="ph">[ Work ]</div>
+                    </div>
+                </div>
+                <p>Butterfly Effect works with leadership teams who want community to drive real commercial impact — not
+                    vanity metrics. We build the infrastructure that earns attention, builds trust, and creates
+                    long-term growth.</p>
+                <p>We don't just sell the map. We walk the terrain.</p>
+                <div class="hub-sh">We help you:</div>
+                <div class="tags">
+                    <span class="tag">Earn Attention</span><span class="tag">Build Trust</span>
+                    <span class="tag">Create Advocacy</span><span class="tag">Strengthen Long-Term Growth</span>
+                </div>
+                <div class="hub-rule"></div>
+                <div class="hub-sh">Enterprise Partners</div>
+                <div class="brand-grid">
+                    <div class="brand-cell">Netflix</div>
+                    <div class="brand-cell">Nike</div>
+                    <div class="brand-cell">Formula E</div>
+                    <div class="brand-cell">McDonald's</div>
+                    <div class="brand-cell">Bumble</div>
+                    <div class="brand-cell">Square</div>
+                    <div class="brand-cell">AU Vodka</div>
+                    <div class="brand-cell">YuLife</div>
+                    <div class="brand-cell">Honest Greens</div>
+                </div>
+                <div class="hub-rule"></div>
+                <p style="font-size:.82rem;opacity:.42;margin-bottom:22px;">All enquiries are handled by the Butterfly
+                    Effect team directly.</p>
+                <a href="https://www.butterflyeffect.xyz" target="_blank" class="hub-cta hub-cta-solid"><span>Work With
+                        Butterfly Effect ↗</span></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════
+     HUB 02 — ADVISORY
+══════════════════════════════ -->
+    <div class="hub-overlay" id="hub-advisory">
+        <div class="hub-backdrop" onclick="closeHub('advisory')"></div>
+        <div class="hub-panel">
+            <div class="hub-header">
+                <button class="hub-close-btn" onclick="closeHub('advisory')">Close ✕</button>
+                <a href="#" onclick="scrollToForm('advisory-form');return false;" class="hub-quick">Apply for
+                    Advisory</a>
+            </div>
+            <div class="hub-body">
+                <div class="hub-ey">02 — 1:1 Advisory</div>
+                <h2 class="hub-title">Strategic clarity<br>for the <em>Arena.</em></h2>
+                <p class="hub-lead">"Sometimes you don't need help doing. You need sharper thinking."</p>
+                <div class="hub-imgs">
+                    <div class="hub-img">
+                        <div class="ph">[ Session ]</div>
+                    </div>
+                    <div class="hub-img">
+                        <div class="ph">[ Advisory ]</div>
+                    </div>
+                </div>
+                <p>Direct, high-trust sessions for CEOs and founders navigating scale, repositioning, or building from
+                    scratch. These are not coaching calls — this is direct access to hard-won perspective, built inside
+                    the world's fastest-growing brands and applied to your specific situation.</p>
+                <p class="em">"I work with a small number of people at a time. If this resonates, tell me what you're
+                    building."</p>
+                <div class="hub-sh" style="margin-bottom:12px;">What we work through:</div>
+                <div class="tags">
+                    <span class="tag">Community Strategy</span><span class="tag">Brand Repositioning</span>
+                    <span class="tag">Scaling from Scratch</span><span class="tag">Growth Architecture</span>
+                    <span class="tag">Trust-Led Growth</span><span class="tag">Founder Clarity</span>
+                </div>
+                <div class="hub-rule"></div>
+                <p class="hub-sh" id="advisory-form" style="margin-bottom:20px;">Apply for Advisory</p>
+                <div class="hub-form">
+                    <div class="frow">
+                        <div class="fld"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+                        <div class="fld"><label>Company / Role</label><input type="text" placeholder="What you do">
+                        </div>
+                    </div>
+                    <div class="fld"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+                    <div class="fld"><label>What are you building or navigating?</label><textarea
+                            placeholder="Be specific — what's the challenge, the stage, the ambition…"></textarea></div>
+                    <div class="form-foot">
+                        <span class="form-note">Goes directly to Elfried. Response within 72hrs.</span>
+                        <button class="btn-sub" onclick="submitForm(this)">Apply →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════
+     HUB 03 — SPEAKING
+══════════════════════════════ -->
+    <div class="hub-overlay" id="hub-speaking">
+        <div class="hub-backdrop" onclick="closeHub('speaking')"></div>
+        <div class="hub-panel">
+            <div class="hub-header">
+                <button class="hub-close-btn" onclick="closeHub('speaking')">Close ✕</button>
+                <a href="#" onclick="scrollToForm('speaking-form');return false;" class="hub-quick">Book a Keynote</a>
+            </div>
+            <div class="hub-body">
+                <div class="hub-ey">03 — Speaking</div>
+                <h2 class="hub-title">Direct from<br>the <em>Arena.</em></h2>
+                <p class="hub-lead">"No theory — just lived experience transformed into stories that stick."</p>
+                <div class="hub-imgs">
+                    <div class="hub-img">
+                        <div class="ph">[ On Stage ]</div>
+                    </div>
+                    <div class="hub-img">
+                        <div class="ph">[ Event ]</div>
+                    </div>
+                </div>
+                <p>Frameworks forged in the world's fastest-growing brands, shared on stages where decisions get made.
+                    100+ events across four continents. Straight thinking. Practical takeaways. Built for people in the
+                    arena.</p>
+                <div class="hub-sh" style="margin-bottom:12px;">I speak to teams about:</div>
+                <div class="tags">
+                    <span class="tag">Community-Led Growth</span><span class="tag">Building Distinctive Brands</span>
+                    <span class="tag">Trust as Competitive Advantage</span><span class="tag">Behavioural Science &
+                        Decision-Making</span>
+                </div>
+                <div class="hub-sh">Has spoken at:</div>
+                <div class="event-badges">
+                    <span class="badge">TEDx</span><span class="badge">Cannes Lions</span>
+                    <span class="badge">1 Billion Followers Summit</span><span class="badge">Adobe MAX</span>
+                    <span class="badge">LinkedIn</span><span class="badge">The Marketing Society</span>
+                    <span class="badge">UK Black Business Show</span>
+                </div>
+                <div class="hub-rule"></div>
+                <p class="hub-sh" id="speaking-form" style="margin-bottom:20px;">Book a Keynote</p>
+                <div class="hub-form">
+                    <div class="frow">
+                        <div class="fld"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+                        <div class="fld"><label>Organisation</label><input type="text"
+                                placeholder="Company or event name"></div>
+                    </div>
+                    <div class="fld"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+                    <div class="frow">
+                        <div class="fld"><label>Event Date</label><input type="text" placeholder="Approximate timing">
+                        </div>
+                        <div class="fld"><label>Location</label><input type="text" placeholder="City, Country"></div>
+                    </div>
+                    <div class="fld"><label>About the event and audience</label><textarea
+                            placeholder="Format, size, and what you're hoping Elfried brings to the room…"></textarea>
+                    </div>
+                    <div class="form-foot">
+                        <span class="form-note">Goes to Alfred's team. Response within 48hrs.</span>
+                        <button class="btn-sub" onclick="submitForm(this)">Send Enquiry →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════
+     HUB 04 — COLLABORATE
+══════════════════════════════ -->
+    <div class="hub-overlay" id="hub-collab">
+        <div class="hub-backdrop" onclick="closeHub('collab')"></div>
+        <div class="hub-panel">
+            <div class="hub-header">
+                <button class="hub-close-btn" onclick="closeHub('collab')">Close ✕</button>
+                <a href="#" onclick="scrollToForm('collab-form');return false;" class="hub-quick">Explore a
+                    Collaboration</a>
+            </div>
+            <div class="hub-body">
+                <div class="hub-ey">04 — Collaborate</div>
+                <h2 class="hub-title">Long-term trust.<br>Not short-term <em>noise.</em></h2>
+                <p class="hub-lead">"I collaborate exclusively with those who prioritise long-term trust over short-term
+                    noise."</p>
+                <div class="hub-imgs">
+                    <div class="hub-img">
+                        <div class="ph">[ Collab ]</div>
+                    </div>
+                    <div class="hub-img">
+                        <div class="ph">[ Content ]</div>
+                    </div>
+                </div>
+                <p>As a creator with 415K+ LinkedIn followers and 250M+ impressions, Elfried has partnered with 50+
+                    brands across content, campaigns and community activations. His audience is built on trust — which
+                    is why collaborations land differently.</p>
+                <p class="em">"I only work with brands I'd genuinely stand behind. That's not a policy — it's what makes
+                    it worth doing."</p>
+                <div class="hub-rule"></div>
+                <div class="hub-sh">Brands Elfried Has Collaborated With</div>
+                <div class="brand-grid">
+                    <div class="brand-cell">LinkedIn</div>
+                    <div class="brand-cell">Adobe</div>
+                    <div class="brand-cell">Anthropic</div>
+                    <div class="brand-cell">Notion</div>
+                    <div class="brand-cell">Semrush</div>
+                    <div class="brand-cell">Sprout Social</div>
+                    <div class="brand-cell">HubSpot</div>
+                    <div class="brand-cell">Fiverr</div>
+                    <div class="brand-cell">Tide</div>
+                </div>
+                <div class="hub-sh" style="margin-bottom:12px;">Find Elfried on:</div>
+                <div class="csocials">
+                    <a href="https://linkedin.com/in/elfriedsamba" target="_blank" class="csocial">
+                        <div>
+                            <div class="csocial-name">LinkedIn</div>
+                            <div class="csocial-desc">415K followers · daily thinking on brand, community and growth
+                            </div>
+                        </div>
+                        <span class="csocial-arr">↗</span>
+                    </a>
+                    <a href="https://www.youtube.com/@TheBottleneckPodcast" target="_blank" class="csocial">
+                        <div>
+                            <div class="csocial-name">Bottleneck Podcast</div>
+                            <div class="csocial-desc">With Rory Sutherland — brands, culture, contrarian thinking</div>
+                        </div>
+                        <span class="csocial-arr">↗</span>
+                    </a>
+                    <a href="https://instagram.com/elfriedsamba" target="_blank" class="csocial">
+                        <div>
+                            <div class="csocial-name">Instagram</div>
+                            <div class="csocial-desc">@elfriedsamba — culture and brand in real time</div>
+                        </div>
+                        <span class="csocial-arr">↗</span>
+                    </a>
+                </div>
+                <div class="hub-rule"></div>
+                <p class="hub-sh" id="collab-form" style="margin-bottom:20px;">Explore a Collaboration</p>
+                <div class="hub-form">
+                    <div class="frow">
+                        <div class="fld"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+                        <div class="fld"><label>Brand / Company</label><input type="text"
+                                placeholder="Who you represent"></div>
+                    </div>
+                    <div class="fld"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+                    <div class="fld"><label>Tell us what you have in mind</label><textarea
+                            placeholder="The collaboration, the audience, and why it makes sense for both sides…"></textarea>
+                    </div>
+                    <div class="form-foot">
+                        <span class="form-note">Goes to Alfred's team. Reply within 48hrs.</span>
+                        <button class="btn-sub" onclick="submitForm(this)">Send →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // CURSOR
+        const cur = document.getElementById('C');
+        document.addEventListener('mousemove', e => {
+            cur.style.left = e.clientX + 'px';
+            cur.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a,button,[onclick],.tile,input,textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => cur.classList.add('big'));
+            el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+        });
+
+        // RIPPLE
+        function ripple(e, el) {
+            const r = document.createElement('span'); r.classList.add('rpl');
+            const rect = el.getBoundingClientRect();
+            r.style.left = (e.clientX - rect.left - 4) + 'px';
+            r.style.top = (e.clientY - rect.top - 4) + 'px';
+            el.appendChild(r); setTimeout(() => r.remove(), 620);
+        }
+
+        // SCROLL REVEAL
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+        }, { threshold: 0.07 });
+        document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+        // SMOOTH NAV
+        document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const id = a.getAttribute('href').slice(1);
+                const t = document.getElementById(id);
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const nudge = document.querySelector('.follow-nudge');
+        if (nudge) nudge.addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // HUB
+        function openHub(id) {
+            document.body.style.overflow = 'hidden';
+            document.getElementById('hub-' + id).classList.add('open');
+        }
+        function closeHub(id) {
+            document.getElementById('hub-' + id).classList.remove('open');
+            setTimeout(() => { document.body.style.overflow = ''; }, 520);
+        }
+        function scrollToForm(formId) {
+            const el = document.getElementById(formId);
+            if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key !== 'Escape') return;
+            document.querySelectorAll('.hub-overlay.open').forEach(h => {
+                h.classList.remove('open');
+                setTimeout(() => { document.body.style.overflow = ''; }, 520);
+            });
+        });
+
+        // KEYWORD HIGHLIGHT — sequential fire on scroll
+        let kwFired = false;
+        const kwObs = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !kwFired) {
+                    kwFired = true;
+                    const kws = Array.from(document.querySelectorAll('.kw'))
+                        .sort((a, b) => parseInt(a.dataset.kw) - parseInt(b.dataset.kw));
+                    kws.forEach((kw, i) => setTimeout(() => kw.classList.add('lit'), i * 320));
+                }
+            });
+        }, { threshold: 0.3 });
+        const sb = document.getElementById('story-body');
+        if (sb) kwObs.observe(sb);
+
+        // FORM FEEDBACK
+        function submitForm(btn) {
+            const orig = btn.textContent;
+            btn.textContent = 'Sent ✓'; btn.style.opacity = '.55';
+            setTimeout(() => { btn.textContent = orig; btn.style.opacity = ''; }, 3000);
+        }
+    </script>
+</body>
+
+</html>
