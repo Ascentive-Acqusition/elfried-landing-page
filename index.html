@@ -349,14 +349,14 @@
 
 
         /* SPEAKING EVENTS */
-        .speaking-testicards{display:flex;flex-direction:column;gap:8px;margin:14px 0 26px}
-        .speaking-testicard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);padding:14px 18px;display:flex;flex-direction:column;gap:12px;transition:background .3s,border-color .3s}
-        .speaking-testicard:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
-        .speaking-testi-header{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-        .speaking-testi-event{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.07em;color:var(--white)}
-        .speaking-testi-org{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-        .speaking-testi-sep{font-size:.52rem;color:rgba(255,255,255,.18)}
-        .speaking-testi-quote{font-size:.85rem;line-height:1.78;color:rgba(250,250,247,.55);border-left:1px solid rgba(255,255,255,.18);padding-left:14px}
+        .speaking-events{display:flex;flex-direction:column;gap:0;margin:14px 0 8px;border-top:1px solid rgba(255,255,255,.07)}
+        .speaking-event-row{display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+        .speaking-event-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.07em;color:var(--white)}
+        .speaking-event-sep{font-size:.5rem;color:rgba(255,255,255,.2)}
+        .speaking-event-org{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32)}
+        .speaking-event-more{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);padding-top:14px;margin-bottom:6px}
+        .speaking-event-featured .speaking-event-name{color:var(--white);font-size:1.1rem}
+        .speaking-event-featured{background:rgba(255,255,255,.04);padding-left:12px;padding-right:12px;border-bottom:1px solid rgba(255,255,255,.12)}
 
         /* FORM SELECT */
         .fld select{background:rgba(255,255,255,.055);border:none;outline:none;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white);transition:background .3s;width:100%;-webkit-appearance:none;cursor:pointer;-webkit-text-fill-color:var(--white)}
@@ -447,28 +447,28 @@
                         <div class="tile-meta"><span class="tile-num">01</span><span class="tile-name">Butterfly Effect</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Community as infrastructure for founders and executive teams.</div>
+                    <div class="tile-desc">Community as infrastructure for founders and executive teams. We build the systems that earn attention, build trust, and create long-term commercial growth.</div>
                 </div>
                 <div class="tile" onclick="openHub('advisory');ripple(event,this)">
                     <div class="tile-row">
                         <div class="tile-meta"><span class="tile-num">02</span><span class="tile-name">1:1 Advisory</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Strategic clarity for CEOs and founders navigating scale.</div>
+                    <div class="tile-desc">Strategic clarity for CEOs and founders navigating scale, repositioning, or building from scratch — direct access to hard-won perspective.</div>
                 </div>
                 <div class="tile" onclick="openHub('speaking');ripple(event,this)">
                     <div class="tile-row">
                         <div class="tile-meta"><span class="tile-num">03</span><span class="tile-name">Speaking</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Frameworks forged in the world's fastest-growing brands.</div>
+                    <div class="tile-desc">Turning frameworks and experiences into live storytelling for stages where decisions get made.</div>
                 </div>
                 <div class="tile" onclick="openHub('collab');ripple(event,this)">
                     <div class="tile-row">
                         <div class="tile-meta"><span class="tile-num">04</span><span class="tile-name">Collaborate</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Selective partnerships with brands who value long-term trust.</div>
+                    <div class="tile-desc">Content collaborations with selective partners who value long-term trust over short-term noise.</div>
                 </div>
             </div>
             <a href="#journey" class="follow-nudge">Or just follow the journey</a>
@@ -606,10 +606,6 @@
                     <span class="tag">Paid Media</span>
                 </div>
                 <div class="hub-rule"></div>
-
-                <p>Direct, high-trust sessions for CEOs and founders navigating scale, repositioning, or building from scratch. These are not coaching calls — this is direct access to hard-won perspective, built inside the world's fastest-growing brands and applied to your specific situation.</p>
-
-                <div class="hub-rule"></div>
                 <a href="https://intro.co/ElfriedSamba" target="_blank" class="hub-cta hub-cta-solid"><span>Book a Session on Intro &#8599;</span></a>
             </div>
         </div>
@@ -633,7 +629,7 @@
                     <div class="speaking-img"><img src="/images/Add to Speaker.jpg" alt="Elfried speaking"></div>
                     <div class="speaking-img"><img src="/images/Add to speaker 2.jpg" alt="Elfried speaking"></div>
                 </div>
-                <p>Frameworks forged in the world's fastest-growing brands, shared on stages where decisions get made. 100+ events across four continents. Straight thinking. Practical takeaways. Built for people in the arena.</p>
+                <p>Turning frameworks and experiences into live storytelling. 100+ events across four continents — from the world's biggest marketing stages to boardrooms where decisions get made. Straight thinking. Practical takeaways. Built for people in the arena.</p>
                 <span class="hub-sh" style="margin-bottom:12px">I speak to teams about:</span>
                 <div class="tags">
                     <span class="tag">Community-Led Growth</span>
@@ -641,52 +637,13 @@
                     <span class="tag">Trust as Competitive Advantage</span>
                     <span class="tag">Behavioural Science & Decision-Making</span>
                 </div>
-                <span class="hub-sh">Has spoken at:</span>
-                <div class="speaking-testicards">
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">Advertising Week</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">Adweek</span>
-                        </div>
-                    </div>
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">INBOUND</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">HubSpot</span>
-                        </div>
-                    </div>
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">REFRAME</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">Vimeo</span>
-                        </div>
-                    </div>
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">World Football Summit</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">World Football Summit</span>
-                        </div>
-                    </div>
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">Spotlight</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">Semrush</span>
-                        </div>
-                    </div>
-                    <div class="speaking-testicard">
-                        <div class="speaking-testi-header">
-                            <span class="speaking-testi-event">Adobe MAX</span>
-                            <span class="speaking-testi-sep">·</span>
-                            <span class="speaking-testi-org">Adobe</span>
-                        </div>
-                    </div>
+                <span class="hub-sh" style="margin-bottom:10px;margin-top:4px">Has spoken at:</span>
+                <div class="speaking-events">
+                    <div class="speaking-event-row speaking-event-featured"><span class="speaking-event-name">Cannes Lions</span><span class="speaking-event-sep">·</span><span class="speaking-event-org">Cannes Lions International Festival of Creativity</span></div>
+                    <div class="speaking-event-row speaking-event-featured"><span class="speaking-event-name">TEDx</span><span class="speaking-event-sep">·</span><span class="speaking-event-org">TEDx Hult London</span></div>
                 </div>
-                <p style="font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:-10px;margin-bottom:4px">and many more across 4 continents</p>
+                <p style="font-size:.85rem;line-height:1.9;color:rgba(250,250,247,.48);margin:14px 0 4px">Advertising Week · HubSpot INBOUND · LinkedIn · Billion Follower Summit · Vimeo REFRAME · World Football Summit · Semrush Spotlight · Adobe MAX</p>
+                <p style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:4px">and many more across 4 continents</p>
 
                 <div class="hub-rule"></div>
                 <p id="speaking-form" class="hub-sh" style="margin-bottom:20px">Book a Keynote</p>
