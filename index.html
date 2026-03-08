@@ -269,13 +269,15 @@
             height: 100%
         }
 
+        /* IMAGE CROP FIX — show from top, stop just below arms */
         .hero-portrait img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 15%;
             display: block;
-            opacity: .9
+            opacity: .9;
+            object-position: 50% 0%;
         }
 
         .hero-eyebrow {
@@ -541,337 +543,6 @@
             color: rgba(250, 250, 247, .4)
         }
 
-        /* STORY */
-        .story-sect {
-            padding: 110px 72px
-        }
-
-        .sect-label {
-            font-size: .56rem;
-            letter-spacing: .32em;
-            text-transform: uppercase;
-            color: var(--grey);
-            margin-bottom: 60px;
-            display: flex;
-            align-items: center;
-            gap: 14px
-        }
-
-        .sect-label::after {
-            content: '';
-            width: 44px;
-            height: 1px;
-            background: var(--grey)
-        }
-
-        .story-layout {
-            display: grid;
-            grid-template-columns: 38fr 62fr;
-            gap: 72px;
-            align-items: start
-        }
-
-        .story-single-img {
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-            background: #141414;
-            border: 1px solid rgba(255, 255, 255, .07);
-            width: 100%
-        }
-
-        .story-single-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, var(--ink) 0%, transparent 20%, transparent 80%, var(--ink) 100%), linear-gradient(to bottom, var(--ink) 0%, transparent 10%, transparent 90%, var(--ink) 100%);
-            pointer-events: none
-        }
-
-        .story-single-img img {
-            width: 100%;
-            display: block;
-            object-fit: cover;
-            opacity: .88
-        }
-
-        .story-text {
-            padding-top: 6px
-        }
-
-        .story-pull {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(1.6rem, 2.5vw, 2.8rem);
-            line-height: 1.0;
-            margin-bottom: 30px;
-            letter-spacing: .02em
-        }
-
-        .story-body {
-            display: flex;
-            flex-direction: column;
-            gap: 17px
-        }
-
-        .story-body p {
-            font-size: .95rem;
-            line-height: 1.88;
-            color: rgba(250, 250, 247, .4)
-        }
-
-        .story-body p.hl {
-            font-size: 1rem;
-            color: rgba(250, 250, 247, .72);
-            border-left: 1px solid rgba(255, 255, 255, .3);
-            padding-left: 18px
-        }
-
-        .kw {
-            color: rgba(250, 250, 247, .28);
-            transition: color .65s var(--ease);
-            font-weight: 400
-        }
-
-        .kw.lit {
-            color: var(--white);
-            font-weight: 500
-        }
-
-        /* WAYS */
-        .ways-sect {
-            padding: 110px 72px 120px
-        }
-
-        .ways-sect .sect-label {
-            margin-bottom: 72px
-        }
-
-        .ways-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: rgba(255, 255, 255, .07)
-        }
-
-        .way {
-            background: var(--ink);
-            padding: 56px 52px 52px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden
-        }
-
-        .way::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(to right, var(--white), transparent);
-            opacity: 0;
-            transition: opacity .4s
-        }
-
-        .way:hover::before {
-            opacity: .5
-        }
-
-        .way-num {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: .7rem;
-            letter-spacing: .24em;
-            color: rgba(255, 255, 255, .2);
-            margin-bottom: 20px
-        }
-
-        .way-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-            letter-spacing: .04em;
-            line-height: .92;
-            margin-bottom: 6px
-        }
-
-        .way-sub {
-            font-size: clamp(.88rem, 1.2vw, .98rem);
-            color: rgba(255, 255, 255, .5);
-            margin-bottom: 24px;
-            line-height: 1.4
-        }
-
-        .way-body {
-            font-size: .9rem;
-            line-height: 1.84;
-            color: rgba(250, 250, 247, .42);
-            flex: 1;
-            margin-bottom: 36px
-        }
-
-        .way-body strong {
-            color: rgba(250, 250, 247, .72);
-            font-weight: 400
-        }
-
-        .way-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: .95rem;
-            letter-spacing: .12em;
-            color: var(--white);
-            text-decoration: none;
-            cursor: pointer;
-            padding: 13px 28px;
-            border: 1px solid rgba(255, 255, 255, .22);
-            position: relative;
-            overflow: hidden;
-            transition: border-color .35s, color .35s;
-            align-self: flex-start
-        }
-
-        .way-cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--white);
-            transform: translateX(-102%);
-            transition: transform .4s var(--ease);
-            z-index: 0
-        }
-
-        .way-cta:hover {
-            border-color: var(--white);
-            color: var(--ink)
-        }
-
-        .way-cta:hover::before {
-            transform: translateX(0)
-        }
-
-        .way-cta span {
-            position: relative;
-            z-index: 1
-        }
-
-        .way-brands {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin: 16px 0 24px
-        }
-
-        .way-brand {
-            font-size: .6rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            padding: 5px 11px;
-            border: 1px solid rgba(255, 255, 255, .1);
-            color: rgba(255, 255, 255, .45)
-        }
-
-        /* TESTIMONIALS */
-        .testi-grid-12 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 16px
-        }
-
-        .testi-grid-6 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 16px
-        }
-
-        .testi-card {
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(255, 255, 255, .09);
-            padding: 22px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px
-        }
-
-        .testi-quote {
-            font-size: .82rem;
-            line-height: 1.72;
-            color: rgba(250, 250, 247, .62);
-            flex: 1
-        }
-
-        .testi-author {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            border-top: 1px solid rgba(255, 255, 255, .07);
-            padding-top: 12px
-        }
-
-        .testi-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: .88rem;
-            letter-spacing: .1em;
-            color: var(--white)
-        }
-
-        .testi-role {
-            font-size: .56rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .35)
-        }
-
-        /* SPEAKING IMAGES 2x2 */
-        .speaking-imgs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin: 18px 0 28px
-        }
-
-        .speaking-img {
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-            background: #111;
-            border: 1px solid rgba(255, 255, 255, .07);
-            aspect-ratio: 4/3
-        }
-
-        .speaking-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: .85
-        }
-
-        .speaking-img-ph {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .5rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .18);
-            aspect-ratio: 4/3
-        }
-
-        /* BRAND GRID 3x4 - 12 logos, 3 per row */
-        .brand-grid-3x4 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, .09);
-            margin: 14px 0 26px
-        }
-
         /* FOLLOW */
         .follow-sect {
             background: var(--light);
@@ -982,6 +653,25 @@
             transform: translateX(5px)
         }
 
+        /* SECT LABEL */
+        .sect-label {
+            font-size: .56rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .sect-label::after {
+            content: '';
+            width: 44px;
+            height: 1px;
+            background: var(--grey)
+        }
+
         /* HUB OVERLAYS */
         .hub-overlay {
             position: fixed;
@@ -1076,11 +766,6 @@
             background: transparent;
             color: var(--white);
             border-color: var(--white)
-        }
-
-        .hub-quick::after {
-            content: '';
-            margin-left: 2px
         }
 
         .hub-body {
@@ -1235,9 +920,9 @@
             opacity: .85
         }
 
-        .brand-grid-4 {
+        .brand-grid-3x4 {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1px;
             background: rgba(255, 255, 255, .09);
             margin: 14px 0 26px
@@ -1299,6 +984,7 @@
             font-size: .85rem
         }
 
+        /* FORMS */
         .hub-form {
             display: flex;
             flex-direction: column;
@@ -1379,6 +1065,11 @@
             background: rgba(255, 255, 255, .7)
         }
 
+        .btn-sub:disabled {
+            opacity: .3;
+            cursor: not-allowed
+        }
+
         .hub-cta {
             display: inline-block;
             padding: 15px 36px;
@@ -1418,413 +1109,6 @@
         .hub-cta-solid {
             background: var(--white);
             color: var(--ink)
-        }
-
-        /* ADVISORY LINK */
-        .advisory-link-box {
-            display: block;
-            padding: 32px;
-            border: 1px solid rgba(255, 255, 255, .15);
-            text-decoration: none;
-            color: var(--white);
-            transition: all .3s;
-            margin: 24px 0
-        }
-
-        .advisory-link-box:hover {
-            border-color: rgba(255, 255, 255, .4);
-            background: rgba(255, 255, 255, .04)
-        }
-
-        .advisory-link-box-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
-            letter-spacing: .1em;
-            margin-bottom: 8px
-        }
-
-        .advisory-link-box-sub {
-            font-size: .8rem;
-            opacity: .5;
-            line-height: 1.6
-        }
-
-        .advisory-link-box-arr {
-            font-size: 1.2rem;
-            margin-top: 16px;
-            display: block;
-            opacity: .5
-        }
-
-        .hero-quote {
-            font-size: clamp(.9rem, 1.1vw, .96rem);
-            color: rgba(250, 250, 247, .55);
-            font-style: normal;
-            display: block;
-            margin-bottom: 4px
-        }
-
-        /* FADE REVEAL */
-        .fade {
-            opacity: 0;
-            transform: translateY(22px);
-            transition: opacity .85s var(--ease), transform .85s var(--ease)
-        }
-
-        .fade.on {
-            opacity: 1;
-            transform: translateY(0)
-        }
-
-        .d1 {
-            transition-delay: .07s
-        }
-
-        .d2 {
-            transition-delay: .14s
-        }
-
-        .d3 {
-            transition-delay: .21s
-        }
-
-        .d4 {
-            transition-delay: .28s
-        }
-
-        /* ============= RESPONSIVE ============= */
-        @media(max-width:1100px) {
-            nav {
-                padding: 20px 48px
-            }
-
-            .hero-left {
-                padding: 50px 44px 50px 52px
-            }
-
-            .phil-col {
-                padding: 64px 52px
-            }
-
-            .story-sect,
-            .ways-sect,
-            .testimonials-sect {
-                padding: 90px 52px
-            }
-
-            .follow-sect {
-                padding: 90px 52px 100px
-            }
-        }
-
-        @media(max-width:820px) {
-            nav {
-                padding: 18px 24px
-            }
-
-            .nav-items {
-                display: none
-            }
-
-            .nav-hamburger {
-                display: flex
-            }
-
-            .stats-ticker {
-                margin-top: 61px
-            }
-
-            .ticker-item {
-                font-size: .85rem;
-                padding: 0 36px
-            }
-
-            /* HERO - stacked layout on mobile: image top, text below on black */
-            .hero {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto;
-                min-height: unset;
-                position: relative;
-                background: var(--ink);
-            }
-
-            .hero-right {
-                position: relative;
-                inset: unset;
-                grid-row: 1;
-                z-index: 1;
-                height: 55vw;
-                min-height: 200px;
-                max-height: 320px;
-                overflow: hidden;
-            }
-
-            .hero-right img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center 15%;
-            }
-
-            .hero-right::before {
-                background: linear-gradient(to bottom, transparent 40%, var(--ink) 100%);
-                z-index: 2;
-            }
-
-            .hero-left {
-                position: relative;
-                z-index: 2;
-                grid-row: 2;
-                padding: 24px 20px 48px;
-                justify-content: flex-start;
-                min-height: unset;
-                background: var(--ink);
-            }
-
-            .hero-name {
-                font-size: clamp(3.5rem, 14vw, 6rem)
-            }
-
-            .hero-intro {
-                color: rgba(250, 250, 247, .82)
-            }
-
-            .tiles {
-                max-width: 100%
-            }
-
-            .tile-name {
-                font-size: 1.25rem
-            }
-
-            .follow-nudge {
-                font-size: .9rem;
-                padding: 12px 22px
-            }
-
-            .phil-sect {
-                grid-template-columns: 1fr
-            }
-
-            .phil-col {
-                padding: 48px 20px;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, .07)
-            }
-
-            .phil-col:last-child {
-                border-bottom: none
-            }
-
-            .story-sect {
-                padding: 60px 20px
-            }
-
-            .story-layout {
-                grid-template-columns: 1fr
-            }
-
-            .story-img-col {
-                display: none
-            }
-
-            .ways-sect {
-                padding: 60px 20px 80px
-            }
-
-            .ways-grid {
-                grid-template-columns: 1fr
-            }
-
-            .way {
-                padding: 36px 20px 32px
-            }
-
-            .testimonials-sect {
-                padding: 60px 20px
-            }
-
-            .testi-grid {
-                grid-template-columns: 1fr;
-                gap: 12px
-            }
-
-            .follow-sect {
-                padding: 60px 20px 80px
-            }
-
-            .follow-header {
-                grid-template-columns: 1fr;
-                gap: 20px
-            }
-
-            .fl {
-                padding: 18px 20px
-            }
-
-            .hub-body {
-                padding: 0 20px 56px
-            }
-
-            .hub-header {
-                padding: 16px 20px
-            }
-
-            .frow {
-                grid-template-columns: 1fr
-            }
-
-            .hub-imgs {
-                grid-template-columns: 1fr 1fr
-            }
-
-            /* Butterfly: 12 logos → 3 cols × 4 rows */
-            .brand-grid {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            /* Collaboration: 12 logos → 3 cols × 4 rows */
-            .brand-grid-3x4 {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            /* Speaking: 6 logos → 3 cols × 2 rows */
-            .speaking-grid {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .brand-grid-4 {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .testi-grid-12 {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .testi-grid-6 {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .speaking-imgs {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
-        @media(max-width:480px) {
-            .hero-name {
-                font-size: clamp(3rem, 13vw, 4.5rem)
-            }
-
-            .brand-cell {
-                height: 64px
-            }
-
-            .brand-cell img {
-                max-height: 28px;
-                max-width: 64px
-            }
-
-            .phil-col {
-                padding: 40px 16px
-            }
-
-            .story-sect,
-            .ways-sect,
-            .testimonials-sect {
-                padding: 48px 16px
-            }
-
-            .follow-sect {
-                padding: 48px 16px 64px
-            }
-
-            .hub-body {
-                padding: 0 16px 48px
-            }
-
-            .testi-grid {
-                gap: 10px
-            }
-
-            /* Keep 3-col on small phones too for visual consistency */
-            .brand-grid {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .brand-grid-3x4 {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .speaking-grid {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .testi-grid-12 {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .testi-grid-6 {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
-
-
-        /* SPEAKING EVENTS */
-        .speaking-events {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin: 14px 0 8px;
-            border-top: 1px solid rgba(255, 255, 255, .07)
-        }
-
-        .speaking-event-row {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            padding: 13px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, .07)
-        }
-
-        .speaking-event-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem;
-            letter-spacing: .07em;
-            color: var(--white)
-        }
-
-        .speaking-event-sep {
-            font-size: .5rem;
-            color: rgba(255, 255, 255, .2)
-        }
-
-        .speaking-event-org {
-            font-size: .52rem;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .32)
-        }
-
-        .speaking-event-more {
-            font-size: .58rem;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .28);
-            padding-top: 14px;
-            margin-bottom: 6px
-        }
-
-        .speaking-event-featured .speaking-event-name {
-            color: var(--white);
-            font-size: 1.1rem
-        }
-
-        .speaking-event-featured {
-            background: rgba(255, 255, 255, .04);
-            padding-left: 12px;
-            padding-right: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, .12)
         }
 
         /* FORM SELECT */
@@ -1942,9 +1226,118 @@
             transform: rotate(45deg)
         }
 
-        .btn-sub:disabled {
-            opacity: .3;
-            cursor: not-allowed
+        /* SPEAKING EVENTS */
+        .speaking-events {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 14px 0 8px;
+            border-top: 1px solid rgba(255, 255, 255, .07)
+        }
+
+        .speaking-event-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .07)
+        }
+
+        .speaking-event-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: .07em;
+            color: var(--white)
+        }
+
+        .speaking-event-sep {
+            font-size: .5rem;
+            color: rgba(255, 255, 255, .2)
+        }
+
+        .speaking-event-org {
+            font-size: .52rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .32)
+        }
+
+        .speaking-event-featured .speaking-event-name {
+            color: var(--white);
+            font-size: 1.1rem
+        }
+
+        .speaking-event-featured {
+            background: rgba(255, 255, 255, .04);
+            padding-left: 12px;
+            padding-right: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, .12)
+        }
+
+        /* SPEAKING IMAGES */
+        .speaking-imgs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 18px 0 28px
+        }
+
+        .speaking-img {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, .07);
+            aspect-ratio: 4/3
+        }
+
+        .speaking-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: .85
+        }
+
+        .speaking-img-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .5rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .18);
+            aspect-ratio: 4/3
+        }
+
+        /* FADE REVEAL */
+        .fade {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .85s var(--ease), transform .85s var(--ease)
+        }
+
+        .fade.on {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .d1 { transition-delay: .07s }
+        .d2 { transition-delay: .14s }
+        .d3 { transition-delay: .21s }
+        .d4 { transition-delay: .28s }
+
+        .kw {
+            color: rgba(250, 250, 247, .28);
+            transition: color .65s var(--ease);
+            font-weight: 400
+        }
+
+        .kw.lit {
+            color: var(--white);
+            font-weight: 500
         }
 
         /* LOADER */
@@ -1976,19 +1369,101 @@
         }
 
         @keyframes loaderIn {
-            to {
-                opacity: 1;
-                transform: scale(1)
-            }
+            to { opacity: 1; transform: scale(1) }
         }
 
-        body.loading {
-            overflow: hidden
+        body.loading { overflow: hidden }
+
+        /* ============= RESPONSIVE ============= */
+        @media(max-width:1100px) {
+            nav { padding: 20px 48px }
+            .hero-left { padding: 50px 44px 50px 52px }
+            .phil-col { padding: 64px 52px }
+        }
+
+        @media(max-width:820px) {
+            nav { padding: 18px 24px }
+            .nav-items { display: none }
+            .nav-hamburger { display: flex }
+            .stats-ticker { margin-top: 61px }
+            .ticker-item { font-size: .85rem; padding: 0 36px }
+
+            .hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                min-height: unset;
+                background: var(--ink)
+            }
+
+            .hero-right {
+                position: relative;
+                inset: unset;
+                grid-row: 1;
+                z-index: 1;
+                height: 55vw;
+                min-height: 200px;
+                max-height: 320px;
+                overflow: hidden
+            }
+
+            .hero-right img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 15%
+            }
+
+            .hero-right::before {
+                background: linear-gradient(to bottom, transparent 40%, var(--ink) 100%);
+                z-index: 2
+            }
+
+            .hero-left {
+                position: relative;
+                z-index: 2;
+                grid-row: 2;
+                padding: 24px 20px 48px;
+                justify-content: flex-start;
+                min-height: unset;
+                background: var(--ink)
+            }
+
+            .hero-name { font-size: clamp(3.5rem, 14vw, 6rem) }
+            .hero-intro { color: rgba(250, 250, 247, .82) }
+            .tiles { max-width: 100% }
+            .tile-name { font-size: 1.25rem }
+            .follow-nudge { font-size: .9rem; padding: 12px 22px }
+            .phil-sect { grid-template-columns: 1fr }
+            .phil-col { padding: 48px 20px; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, .07) }
+            .phil-col:last-child { border-bottom: none }
+            .follow-sect { padding: 60px 20px 80px }
+            .follow-header { grid-template-columns: 1fr; gap: 20px }
+            .fl { padding: 18px 20px }
+            .hub-body { padding: 0 20px 56px }
+            .hub-header { padding: 16px 20px }
+            .frow { grid-template-columns: 1fr }
+            .hub-imgs { grid-template-columns: 1fr 1fr }
+            .brand-grid { grid-template-columns: repeat(3, 1fr) }
+            .brand-grid-3x4 { grid-template-columns: repeat(3, 1fr) }
+            .speaking-grid { grid-template-columns: repeat(3, 1fr) }
+            .speaking-imgs { grid-template-columns: 1fr 1fr }
+        }
+
+        @media(max-width:480px) {
+            .hero-name { font-size: clamp(3rem, 13vw, 4.5rem) }
+            .brand-cell { height: 64px }
+            .brand-cell img { max-height: 28px; max-width: 64px }
+            .phil-col { padding: 40px 16px }
+            .follow-sect { padding: 48px 16px 64px }
+            .hub-body { padding: 0 16px 48px }
+            .brand-grid { grid-template-columns: repeat(3, 1fr) }
+            .brand-grid-3x4 { grid-template-columns: repeat(3, 1fr) }
+            .speaking-grid { grid-template-columns: repeat(3, 1fr) }
         }
     </style>
 </head>
 
-<body>
+<body class="loading">
     <!-- LOADER -->
     <div id="loader" aria-hidden="true">
         <span class="loader-logo">Elfried Samba</span>
@@ -2036,73 +1511,47 @@
             <p class="hero-tag">"I build communities for brands."</p>
             <h1 class="hero-name">Elfried<br>Samba</h1>
             <p class="hero-intro">
-                <span
-                    style="display:block;font-size:1.05rem;color:rgba(250,250,247,.5);font-style:normal;margin-bottom:18px;line-height:1.5">"Attention
-                    is rented. Trust is earned. And trust compounds."</span>
-                Hi, I'm Elf. I build communities for a living. Marketing is my ingredient of choice, and I think most
-                people are using it wrong. Not the tools. The thinking and the systems behind them.<br><br>
+                <span style="display:block;font-size:1.05rem;color:rgba(250,250,247,.5);font-style:normal;margin-bottom:18px;line-height:1.5">"Attention is rented. Trust is earned. And trust compounds."</span>
+                Hi, I'm Elf. I build communities for a living. Marketing is my ingredient of choice, and I think most people are using it wrong. Not the tools. The thinking and the systems behind them.<br><br>
                 Most people are fighting the wrong battle. Performance vs brand. Paid vs organic. Content vs community.
-                <strong>The brands that win aren't the ones that picked the right channel. They're the ones who make
-                    everything work together.</strong><br><br>
-                After 15+ years working with some of the world's most culturally significant brands, I keep coming back
-                to the same truth: <strong>the only thing that compounds is trust.</strong> And that trust becomes a
-                defensive moat — the thing that protects your brand when the storm comes.<br><br>
-                From <span class="kw" data-kw="0">scaling Gymshark from 1.5M to 20M+ followers</span> and contributing
-                to a <span class="kw" data-kw="1">$1.7B valuation</span>, to advising global enterprise giants — the
-                lesson never changes. Community isn't a marketing channel. It's the <span class="kw"
-                    data-kw="2">strongest growth advantage on Earth</span> and, more importantly, the strongest defence
-                a brand can build. Create real affinity with people, and they don't just buy. <strong>They protect
-                    you.</strong><br><br>
-                Today, as <span class="kw" data-kw="3">Co-Founder &amp; CEO of Butterfly Effect</span>, I help
-                leadership teams turn community into a commercial lever. A system. Because attention is rented. Trust is
-                earned. And that trust isn't just a growth asset — it's insurance.<br><br>
-                In 2024, Favikon ranked me the <span class="kw" data-kw="4">second most influential LinkedIn creator
-                    globally</span>. <span class="kw" data-kw="5">415K followers. 500M+ impressions. 9M
-                    engagements.</span><br><br>
-                And as co-host of <span class="kw" data-kw="6">The Bottleneck Podcast</span> alongside Rory Sutherland,
-                I explore the friction between behavioural science, the ever-changing marketing landscape, and the messy
-                reality of the creator economy.
+                <strong>The brands that win aren't the ones that picked the right channel. They're the ones who make everything work together.</strong><br><br>
+                After 15+ years working with some of the world's most culturally significant brands, I keep coming back to the same truth: <strong>the only thing that compounds is trust.</strong> And that trust becomes a defensive moat — the thing that protects your brand when the storm comes.<br><br>
+                From <span class="kw" data-kw="0">scaling Gymshark from 1.5M to 20M+ followers</span> and contributing to a <span class="kw" data-kw="1">$1.7B valuation</span>, to advising global enterprise giants — the lesson never changes. Community isn't a marketing channel. It's the <span class="kw" data-kw="2">strongest growth advantage on Earth</span> and, more importantly, the strongest defence a brand can build. Create real affinity with people, and they don't just buy. <strong>They protect you.</strong><br><br>
+                Today, as <span class="kw" data-kw="3">Co-Founder &amp; CEO of Butterfly Effect</span>, I help leadership teams turn community into a commercial lever. A system. Because attention is rented. Trust is earned. And that trust isn't just a growth asset — it's insurance.<br><br>
+                In 2024, Favikon ranked me the <span class="kw" data-kw="4">second most influential LinkedIn creator globally</span>. <span class="kw" data-kw="5">415K followers. 500M+ impressions. 9M engagements.</span><br><br>
+                And as co-host of <span class="kw" data-kw="6">The Bottleneck Podcast</span> alongside Rory Sutherland, I explore the friction between behavioural science, the ever-changing marketing landscape, and the messy reality of the creator economy.
             </p>
-            <div class="tiles-label" id="ways"
-                style="font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(250,250,247,.9);margin-bottom:14px;display:flex;align-items:center;gap:14px">
-                Four Ways to Co-Create<span
-                    style="display:inline-block;width:32px;height:1px;background:rgba(250,250,247,.4)"></span></div>
+            <div class="tiles-label" id="ways" style="font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(250,250,247,.9);margin-bottom:14px;display:flex;align-items:center;gap:14px">
+                Four Ways to Co-Create<span style="display:inline-block;width:32px;height:1px;background:rgba(250,250,247,.4)"></span>
+            </div>
             <div class="tiles">
                 <div class="tile" onclick="openHub('butterfly');ripple(event,this)">
                     <div class="tile-row">
-                        <div class="tile-meta"><span class="tile-num">01</span><span class="tile-name">Butterfly
-                                Effect</span></div>
+                        <div class="tile-meta"><span class="tile-num">01</span><span class="tile-name">Butterfly Effect</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Community as infrastructure for founders and executive teams. We build the
-                        systems that earn attention, build trust, and create long-term commercial growth.</div>
+                    <div class="tile-desc">Community as infrastructure for founders and executive teams. We build the systems that earn attention, build trust, and create long-term commercial growth.</div>
                 </div>
                 <div class="tile" onclick="openHub('advisory');ripple(event,this)">
                     <div class="tile-row">
-                        <div class="tile-meta"><span class="tile-num">02</span><span class="tile-name">1:1
-                                Advisory</span></div>
+                        <div class="tile-meta"><span class="tile-num">02</span><span class="tile-name">1:1 Advisory</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Strategic clarity for CEOs and founders navigating scale, repositioning, or
-                        building from scratch — direct access to hard-won perspective.</div>
+                    <div class="tile-desc">Strategic clarity for CEOs and founders navigating scale, repositioning, or building from scratch — direct access to hard-won perspective.</div>
                 </div>
                 <div class="tile" onclick="openHub('speaking');ripple(event,this)">
                     <div class="tile-row">
-                        <div class="tile-meta"><span class="tile-num">03</span><span class="tile-name">Speaking</span>
-                        </div>
+                        <div class="tile-meta"><span class="tile-num">03</span><span class="tile-name">Speaking</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Turning frameworks and experiences into live storytelling for stages where
-                        decisions get made.</div>
+                    <div class="tile-desc">Turning frameworks and experiences into live storytelling for stages where decisions get made.</div>
                 </div>
                 <div class="tile" onclick="openHub('collab');ripple(event,this)">
                     <div class="tile-row">
-                        <div class="tile-meta"><span class="tile-num">04</span><span
-                                class="tile-name">Collaborate</span></div>
+                        <div class="tile-meta"><span class="tile-num">04</span><span class="tile-name">Collaborate</span></div>
                         <span class="tile-arr">&#8594;</span>
                     </div>
-                    <div class="tile-desc">Content collaborations with selective partners who value long-term trust over
-                        short-term noise.</div>
+                    <div class="tile-desc">Content collaborations with selective partners who value long-term trust over short-term noise.</div>
                 </div>
             </div>
             <a href="#journey" class="follow-nudge">Or just follow the journey</a>
@@ -2112,7 +1561,8 @@
                 <picture>
                     <source srcset="/images/Elfried_TEDxHultLondon_PrePostTalk_B&W.webp" type="image/webp">
                     <img src="/images/Elfried_TEDxHultLondon_PrePostTalk_B&W.jpg" alt="Elfried Samba"
-                        style="filter:grayscale(100%)" loading="eager" decoding="async" fetchpriority="high">
+                        style="filter:grayscale(100%);object-position:50% 0%;object-fit:cover;width:100%;height:100%;clip-path:inset(0 0 20% 0)"
+                        loading="eager" decoding="async" fetchpriority="high">
                 </picture>
             </div>
         </div>
@@ -2124,53 +1574,42 @@
             <div class="phil-label">Philosophy</div>
             <h2 class="phil-title">Two Lenses.<br>One System.</h2>
             <div class="phil-body">
-                <p>I approach community through two distinct lenses to ensure growth is both <strong>cultural and
-                        commercial.</strong></p>
+                <p>I approach community through two distinct lenses to ensure growth is both <strong>cultural and commercial.</strong></p>
                 <div class="phil-bullet">
                     <div class="phil-item">
                         <div class="phil-item-title">Ecosystems</div>
-                        <p>Conversation drives commerce. Our goal is to ensure more people talk about you than you
-                            talking at them. We design the environment where your brand and your people coexist — the
-                            strategy, the narrative, and the behavioural science that turns a customer into an advocate.
-                        </p>
+                        <p>Conversation drives commerce. Our goal is to ensure more people talk about you than you talking at them. We design the environment where your brand and your people coexist — the strategy, the narrative, and the behavioural science that turns a customer into an advocate.</p>
                     </div>
                     <div class="phil-item">
                         <div class="phil-item-title">Infrastructure</div>
-                        <p>We don't just "run social." We give community control back to the brand by obsessing over the
-                            process of execution — building the systems, the processes, and the data-driven foundations
-                            that make community a <strong>reliable commercial lever.</strong></p>
+                        <p>We don't just "run social." We give community control back to the brand by obsessing over the process of execution — building the systems, the processes, and the data-driven foundations that make community a <strong>reliable commercial lever.</strong></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <!-- FOLLOW THE JOURNEY -->
     <section class="follow-sect" id="journey">
         <div class="sect-label">Follow the Journey</div>
         <div class="follow-header fade">
             <h2>I share what<br>I'm <em>learning</em><br>as I build.</h2>
-            <p>No guru energy. No manufactured certainty. Just real thinking shared in real time — on LinkedIn,
-                Instagram, and in conversation with some of the sharpest minds in business.</p>
+            <p>No guru energy. No manufactured certainty. Just real thinking shared in real time — on LinkedIn, Instagram, and in conversation with some of the sharpest minds in business.</p>
         </div>
         <div class="follow-links fade d1">
             <a href="https://linkedin.com/in/elfriedsamba" target="_blank" class="fl">
                 <div class="fl-inner">
-                    <div><span class="fl-title">LinkedIn</span><span class="fl-sub">415K followers · 2nd most
-                            influential creator globally (Favikon 2024)</span></div>
+                    <div><span class="fl-title">LinkedIn</span><span class="fl-sub">415K followers · 2nd most influential creator globally (Favikon 2024)</span></div>
                 </div><span class="fl-arr">&#8599;</span>
             </a>
             <a href="https://instagram.com/elfriedsamba" target="_blank" class="fl">
                 <div class="fl-inner">
-                    <div><span class="fl-title">Instagram</span><span class="fl-sub">@elfriedsamba — culture, brand and
-                            community in real time</span></div>
+                    <div><span class="fl-title">Instagram</span><span class="fl-sub">@elfriedsamba — culture, brand and community in real time</span></div>
                 </div><span class="fl-arr">&#8599;</span>
             </a>
             <a href="https://www.youtube.com/@TheBottleneckPodcast" target="_blank" class="fl">
                 <div class="fl-inner">
-                    <div><span class="fl-title">Bottleneck Podcast</span><span class="fl-sub">With Rory Sutherland —
-                            brands, culture and contrarian thinking</span></div>
+                    <div><span class="fl-title">Bottleneck Podcast</span><span class="fl-sub">With Rory Sutherland — brands, culture and contrarian thinking</span></div>
                 </div><span class="fl-arr">&#8599;</span>
             </a>
         </div>
@@ -2182,35 +1621,29 @@
         <div class="hub-panel">
             <div class="hub-header">
                 <button class="hub-close-btn" onclick="closeHub('butterfly')">Close X</button>
-                <a href="https://www.butterflyeffect.xyz/contact" target="_blank" class="hub-quick">Work With Butterfly
-                    Effect &#8599;</a>
+                <a href="https://www.butterflyeffect.xyz/contact" target="_blank" class="hub-quick">Work With Butterfly Effect &#8599;</a>
             </div>
             <div class="hub-body">
                 <div class="hub-ey">01 — Butterfly Effect</div>
                 <h2 class="hub-title">Community as Infrastructure.</h2>
-                <p class="hub-lead">"We partner with founders and executive teams who want community to drive real
-                    business outcomes. Not a campaign. A system."</p>
+                <p class="hub-lead">"We partner with founders and executive teams who want community to drive real business outcomes. Not a campaign. A system."</p>
                 <div class="hub-imgs">
                     <div class="hub-img">
                         <div class="ph">
                             <picture>
-                                <source srcset="/images/PBLM3003.webp" type="image/webp"><img src="/images/PBLM3003.jpg"
-                                    alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/PBLM3003.webp" type="image/webp"><img src="/images/PBLM3003.jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                     <div class="hub-img">
                         <div class="ph">
                             <picture>
-                                <source srcset="/images/LV7A9491-1-Edit (1).webp" type="image/webp"><img
-                                    src="/images/LV7A9491-1-Edit (1).jpg" alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/LV7A9491-1-Edit (1).webp" type="image/webp"><img src="/images/LV7A9491-1-Edit (1).jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                 </div>
-                <p>Butterfly Effect works with leadership teams who want community to drive real commercial impact — not
-                    vanity metrics. We build the infrastructure that earns attention, builds trust, and creates
-                    long-term growth.</p>
+                <p>Butterfly Effect works with leadership teams who want community to drive real commercial impact — not vanity metrics. We build the infrastructure that earns attention, builds trust, and creates long-term growth.</p>
                 <p>We don't just sell the map. We walk the terrain.</p>
                 <span class="hub-sh">We help you:</span>
                 <div class="tags">
@@ -2224,34 +1657,22 @@
                 <div class="hub-rule"></div>
                 <span class="hub-sh">Enterprise Partners</span>
                 <div class="brand-grid">
-                    <div class="brand-cell"><img src="/images/netflix-wordmark.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/nike-4-logo-svgrepo-com.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/500px-Formula_E_Wordmark_full_co.webp" alt=""></div>
-                    <div class="brand-cell"><img src="/images/mcdonalds-15-logo-png-transparen.webp" alt=""></div>
-                    <div class="brand-cell"><img src="/images/bumble.webp" alt="" loading="lazy" decoding="async"></div>
-                    <div class="brand-cell"><img src="/images/square.webp" alt="" loading="lazy" decoding="async"></div>
-                    <div class="brand-cell"><img src="/images/au-vodka.webp" alt="" loading="lazy" decoding="async">
-                    </div>
+                    <div class="brand-cell"><img src="/images/netflix-wordmark.svg" alt="Netflix"></div>
+                    <div class="brand-cell"><img src="/images/nike-4-logo-svgrepo-com.svg" alt="Nike"></div>
+                    <div class="brand-cell"><img src="/images/500px-Formula_E_Wordmark_full_co.webp" alt="Formula E"></div>
+                    <div class="brand-cell"><img src="/images/mcdonalds-15-logo-png-transparen.webp" alt="McDonald's"></div>
+                    <div class="brand-cell"><img src="/images/bumble.webp" alt="Bumble" loading="lazy" decoding="async"></div>
+                    <div class="brand-cell"><img src="/images/square.webp" alt="Square" loading="lazy" decoding="async"></div>
+                    <div class="brand-cell"><img src="/images/au-vodka.webp" alt="AU Vodka" loading="lazy" decoding="async"></div>
                     <div class="brand-cell"><img src="/images/yu.webp" alt="" loading="lazy" decoding="async"></div>
                     <div class="brand-cell"><img src="/images/honest.webp" alt="" loading="lazy" decoding="async"></div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/concacaf.svg" alt="">
-                    </div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/wetransfer.svg" alt="">
-                    </div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/meta-color.svg" alt="" style="width:200px">
-                    </div>
+                    <div class="brand-cell"><img src="/images/concacaf.svg" alt="Concacaf"></div>
+                    <div class="brand-cell"><img src="/images/wetransfer.svg" alt="WeTransfer"></div>
+                    <div class="brand-cell"><img src="/images/meta-color.svg" alt="Meta" style="width:200px"></div>
                 </div>
                 <div class="hub-rule"></div>
-                <p style="font-size:.82rem;opacity:.42;margin-bottom:22px">All enquiries are handled by the Butterfly
-                    Effect team directly.</p>
-                <a href="https://www.butterflyeffect.xyz/contact" target="_blank"
-                    class="hub-cta hub-cta-solid"><span>Work With Butterfly Effect &#8599;</span></a>
+                <p style="font-size:.82rem;opacity:.42;margin-bottom:22px">All enquiries are handled by the Butterfly Effect team directly.</p>
+                <a href="https://www.butterflyeffect.xyz/contact" target="_blank" class="hub-cta hub-cta-solid"><span>Work With Butterfly Effect &#8599;</span></a>
             </div>
         </div>
     </div>
@@ -2270,24 +1691,18 @@
                 <p class="hub-lead">"Sometimes you don't need help doing. You just need a coach."</p>
                 <div class="hub-imgs">
                     <div class="hub-img">
-                        <div class="ph">
-                            <img src="/images/1to1.jpg" alt="">
-                        </div>
+                        <div class="ph"><img src="/images/1to1.jpg" alt=""></div>
                     </div>
                     <div class="hub-img">
                         <div class="ph">
                             <picture>
-                                <source srcset="/images/1to12.webp" type="image/webp"><img src="/images/1to12.jpg"
-                                    alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/1to12.webp" type="image/webp"><img src="/images/1to12.jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                 </div>
-                <p>Direct, high-trust sessions for CEOs and founders navigating scale, repositioning, or building from
-                    scratch. These are not coaching calls — this is direct access to hard-won perspective, built inside
-                    the world's fastest-growing brands and applied to your specific situation.</p>
-                <p class="em">"I work with a small number of people at a time. If this resonates, tell me what you're
-                    building."</p>
+                <p>Direct, high-trust sessions for CEOs and founders navigating scale, repositioning, or building from scratch. These are not coaching calls — this is direct access to hard-won perspective, built inside the world's fastest-growing brands and applied to your specific situation.</p>
+                <p class="em">"I work with a small number of people at a time. If this resonates, tell me what you're building."</p>
                 <span class="hub-sh" style="margin-bottom:12px">What we work through:</span>
                 <div class="tags">
                     <span class="tag">Personal Branding</span>
@@ -2298,8 +1713,7 @@
                     <span class="tag">Paid Media</span>
                 </div>
                 <div class="hub-rule"></div>
-                <a href="https://intro.co/ElfriedSamba" target="_blank" class="hub-cta hub-cta-solid"><span>Book a
-                        Session on Intro &#8599;</span></a>
+                <a href="https://intro.co/ElfriedSamba" target="_blank" class="hub-cta hub-cta-solid"><span>Book a Session on Intro &#8599;</span></a>
             </div>
         </div>
     </div>
@@ -2310,8 +1724,7 @@
         <div class="hub-panel">
             <div class="hub-header">
                 <button class="hub-close-btn" onclick="closeHub('speaking')">Close X</button>
-                <a href="#" onclick="scrollToForm('speaking-form');return false;" class="hub-quick">Book a Keynote
-                    &#8599;</a>
+                <a href="#" onclick="scrollToForm('speaking-form');return false;" class="hub-quick">Book a Keynote &#8599;</a>
             </div>
             <div class="hub-body">
                 <div class="hub-ey">03 — Speaking</div>
@@ -2320,36 +1733,30 @@
                 <div class="speaking-imgs">
                     <div class="speaking-img">
                         <picture>
-                            <source srcset="/images/PBLM3301.webp" type="image/webp"><img src="/images/PBLM3301.jpg"
-                                alt="Elfried speaking" loading="lazy" decoding="async">
+                            <source srcset="/images/PBLM3301.webp" type="image/webp"><img src="/images/PBLM3301.jpg" alt="Elfried speaking" loading="lazy" decoding="async">
                         </picture>
                     </div>
                     <div class="speaking-img">
                         <picture>
-                            <source srcset="/images/PBLM5197.webp" type="image/webp"><img src="/images/PBLM5197.jpg"
-                                alt="Elfried speaking" loading="lazy" decoding="async">
+                            <source srcset="/images/PBLM5197.webp" type="image/webp"><img src="/images/PBLM5197.jpg" alt="Elfried speaking" loading="lazy" decoding="async">
                         </picture>
                     </div>
                     <div class="speaking-img">
                         <div class="speaking-img-ph">
                             <picture>
-                                <source srcset="/images/Add to Speaker.webp" type="image/webp"><img
-                                    src="/images/Add to Speaker.jpg" alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/Add to Speaker.webp" type="image/webp"><img src="/images/Add to Speaker.jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                     <div class="speaking-img">
                         <div class="speaking-img-ph">
                             <picture>
-                                <source srcset="/images/Add to speaker 2.webp" type="image/webp"><img
-                                    src="/images/Add to speaker 2.jpg" alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/Add to speaker 2.webp" type="image/webp"><img src="/images/Add to speaker 2.jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                 </div>
-                <p>Turning frameworks and experiences into live storytelling. 100+ events across four continents — from
-                    the world's biggest marketing stages to boardrooms where decisions get made. Straight thinking.
-                    Practical takeaways. Built for people in the arena.</p>
+                <p>Turning frameworks and experiences into live storytelling. 100+ events across four continents — from the world's biggest marketing stages to boardrooms where decisions get made. Straight thinking. Practical takeaways. Built for people in the arena.</p>
                 <span class="hub-sh" style="margin-bottom:12px">I speak to teams about:</span>
                 <div class="tags">
                     <span class="tag">Community-Led Growth</span>
@@ -2359,181 +1766,63 @@
                 </div>
                 <span class="hub-sh" style="margin-bottom:10px;margin-top:4px">Has spoken at:</span>
                 <div class="speaking-events">
-                    <div class="speaking-event-row speaking-event-featured"><span class="speaking-event-name">Cannes
-                            Lions</span><span class="speaking-event-sep">·</span><span class="speaking-event-org">Cannes
-                            Lions International Festival of Creativity</span></div>
-                    <div class="speaking-event-row speaking-event-featured"><span
-                            class="speaking-event-name">TEDx</span><span class="speaking-event-sep">·</span><span
-                            class="speaking-event-org">TEDx Hult London</span></div>
+                    <div class="speaking-event-row speaking-event-featured"><span class="speaking-event-name">Cannes Lions</span><span class="speaking-event-sep">·</span><span class="speaking-event-org">Cannes Lions International Festival of Creativity</span></div>
+                    <div class="speaking-event-row speaking-event-featured"><span class="speaking-event-name">TEDx</span><span class="speaking-event-sep">·</span><span class="speaking-event-org">TEDx Hult London</span></div>
                 </div>
-                <p style="font-size:.85rem;line-height:1.9;color:rgba(250,250,247,.48);margin:14px 0 4px">Advertising
-                    Week · HubSpot INBOUND · LinkedIn · Billion Follower Summit · Vimeo REFRAME · World Football Summit
-                    · Semrush Spotlight · Adobe MAX</p>
-                <p
-                    style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:4px">
-                    and many more across 4 continents</p>
-
+                <p style="font-size:.85rem;line-height:1.9;color:rgba(250,250,247,.48);margin:14px 0 4px">Advertising Week · HubSpot INBOUND · LinkedIn · Billion Follower Summit · Vimeo REFRAME · World Football Summit · Semrush Spotlight · Adobe MAX</p>
+                <p style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:4px">and many more across 4 continents</p>
                 <div class="hub-rule"></div>
+
+                <!-- ✅ UPDATED KEYNOTE FORM — with name attributes for n8n -->
                 <p id="speaking-form" class="hub-sh" style="margin-bottom:20px">Book a Keynote</p>
-                <div class="hub-form">
+                <div class="hub-form" id="keynote-form">
                     <div class="frow">
-                        <div class="fld"><label>Your Name *</label><input type="text" placeholder="Full name" required>
+                        <div class="fld">
+                            <label>Your Name *</label>
+                            <input type="text" name="full_name" placeholder="Full name" required>
                         </div>
-                        <div class="fld"><label>Organisation *</label><input type="text"
-                                placeholder="Company or event name" required></div>
+                        <div class="fld">
+                            <label>Organisation *</label>
+                            <input type="text" name="organisation" placeholder="Company or event name" required>
+                        </div>
                     </div>
-                    <div class="fld"><label>Email *</label><input type="email" placeholder="your@email.com" required>
+                    <div class="fld">
+                        <label>Email *</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
                     </div>
-                    <div class="fld"><label>Event Date *</label><input type="date" required class="date-input"></div>
+                    <div class="fld">
+                        <label>Event Date *</label>
+                        <input type="date" name="event_date" required class="date-input">
+                    </div>
                     <div class="frow">
-                        <div class="fld"><label>Country *</label><select required
+                        <div class="fld">
+                            <label>Country *</label>
+                            <select name="country" required
                                 style="background:rgba(255,255,255,.055);border:none;outline:none;padding:6px 18px 16px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white);transition:background .3s;width:100%;-webkit-appearance:none"
                                 onchange="updateCities(this,'speaking-city')">
                                 <option value="">Select country…</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                                <option>Andorra</option>
-                                <option>Angola</option>
-                                <option>Argentina</option>
-                                <option>Armenia</option>
-                                <option>Australia</option>
-                                <option>Austria</option>
-                                <option>Azerbaijan</option>
-                                <option>Bahrain</option>
-                                <option>Bangladesh</option>
-                                <option>Belarus</option>
-                                <option>Belgium</option>
-                                <option>Benin</option>
-                                <option>Bolivia</option>
-                                <option>Bosnia and Herzegovina</option>
-                                <option>Botswana</option>
-                                <option>Brazil</option>
-                                <option>Bulgaria</option>
-                                <option>Cambodia</option>
-                                <option>Cameroon</option>
-                                <option>Canada</option>
-                                <option>Chile</option>
-                                <option>China</option>
-                                <option>Colombia</option>
-                                <option>Costa Rica</option>
-                                <option>Croatia</option>
-                                <option>Cuba</option>
-                                <option>Cyprus</option>
-                                <option>Czech Republic</option>
-                                <option>Denmark</option>
-                                <option>Dominican Republic</option>
-                                <option>Ecuador</option>
-                                <option>Egypt</option>
-                                <option>El Salvador</option>
-                                <option>Estonia</option>
-                                <option>Ethiopia</option>
-                                <option>Finland</option>
-                                <option>France</option>
-                                <option>Georgia</option>
-                                <option>Germany</option>
-                                <option>Ghana</option>
-                                <option>Greece</option>
-                                <option>Guatemala</option>
-                                <option>Honduras</option>
-                                <option>Hong Kong</option>
-                                <option>Hungary</option>
-                                <option>Iceland</option>
-                                <option>India</option>
-                                <option>Indonesia</option>
-                                <option>Iran</option>
-                                <option>Iraq</option>
-                                <option>Ireland</option>
-                                <option>Israel</option>
-                                <option>Italy</option>
-                                <option>Jamaica</option>
-                                <option>Japan</option>
-                                <option>Jordan</option>
-                                <option>Kazakhstan</option>
-                                <option>Kenya</option>
-                                <option>Kuwait</option>
-                                <option>Latvia</option>
-                                <option>Lebanon</option>
-                                <option>Libya</option>
-                                <option>Lithuania</option>
-                                <option>Luxembourg</option>
-                                <option>Malaysia</option>
-                                <option>Malta</option>
-                                <option>Mexico</option>
-                                <option>Moldova</option>
-                                <option>Monaco</option>
-                                <option>Morocco</option>
-                                <option>Mozambique</option>
-                                <option>Myanmar</option>
-                                <option>Namibia</option>
-                                <option>Nepal</option>
-                                <option>Netherlands</option>
-                                <option>New Zealand</option>
-                                <option>Nicaragua</option>
-                                <option>Nigeria</option>
-                                <option>Norway</option>
-                                <option>Oman</option>
-                                <option>Pakistan</option>
-                                <option>Panama</option>
-                                <option>Paraguay</option>
-                                <option>Peru</option>
-                                <option>Philippines</option>
-                                <option>Poland</option>
-                                <option>Portugal</option>
-                                <option>Qatar</option>
-                                <option>Romania</option>
-                                <option>Russia</option>
-                                <option>Rwanda</option>
-                                <option>Saudi Arabia</option>
-                                <option>Senegal</option>
-                                <option>Serbia</option>
-                                <option>Singapore</option>
-                                <option>Slovakia</option>
-                                <option>Slovenia</option>
-                                <option>South Africa</option>
-                                <option>South Korea</option>
-                                <option>Spain</option>
-                                <option>Sri Lanka</option>
-                                <option>Sudan</option>
-                                <option>Sweden</option>
-                                <option>Switzerland</option>
-                                <option>Syria</option>
-                                <option>Taiwan</option>
-                                <option>Tanzania</option>
-                                <option>Thailand</option>
-                                <option>Trinidad and Tobago</option>
-                                <option>Tunisia</option>
-                                <option>Turkey</option>
-                                <option>Uganda</option>
-                                <option>Ukraine</option>
-                                <option>United Arab Emirates</option>
-                                <option>United Kingdom</option>
-                                <option>United States</option>
-                                <option>Uruguay</option>
-                                <option>Uzbekistan</option>
-                                <option>Venezuela</option>
-                                <option>Vietnam</option>
-                                <option>Yemen</option>
-                                <option>Zambia</option>
-                                <option>Zimbabwe</option>
-                            </select></div>
+                                <option>Afghanistan</option><option>Albania</option><option>Algeria</option><option>Andorra</option><option>Angola</option><option>Argentina</option><option>Armenia</option><option>Australia</option><option>Austria</option><option>Azerbaijan</option><option>Bahrain</option><option>Bangladesh</option><option>Belarus</option><option>Belgium</option><option>Benin</option><option>Bolivia</option><option>Bosnia and Herzegovina</option><option>Botswana</option><option>Brazil</option><option>Bulgaria</option><option>Cambodia</option><option>Cameroon</option><option>Canada</option><option>Chile</option><option>China</option><option>Colombia</option><option>Costa Rica</option><option>Croatia</option><option>Cuba</option><option>Cyprus</option><option>Czech Republic</option><option>Denmark</option><option>Dominican Republic</option><option>Ecuador</option><option>Egypt</option><option>El Salvador</option><option>Estonia</option><option>Ethiopia</option><option>Finland</option><option>France</option><option>Georgia</option><option>Germany</option><option>Ghana</option><option>Greece</option><option>Guatemala</option><option>Honduras</option><option>Hong Kong</option><option>Hungary</option><option>Iceland</option><option>India</option><option>Indonesia</option><option>Iran</option><option>Iraq</option><option>Ireland</option><option>Israel</option><option>Italy</option><option>Jamaica</option><option>Japan</option><option>Jordan</option><option>Kazakhstan</option><option>Kenya</option><option>Kuwait</option><option>Latvia</option><option>Lebanon</option><option>Libya</option><option>Lithuania</option><option>Luxembourg</option><option>Malaysia</option><option>Malta</option><option>Mexico</option><option>Moldova</option><option>Monaco</option><option>Morocco</option><option>Mozambique</option><option>Myanmar</option><option>Namibia</option><option>Nepal</option><option>Netherlands</option><option>New Zealand</option><option>Nicaragua</option><option>Nigeria</option><option>Norway</option><option>Oman</option><option>Pakistan</option><option>Panama</option><option>Paraguay</option><option>Peru</option><option>Philippines</option><option>Poland</option><option>Portugal</option><option>Qatar</option><option>Romania</option><option>Russia</option><option>Rwanda</option><option>Saudi Arabia</option><option>Senegal</option><option>Serbia</option><option>Singapore</option><option>Slovakia</option><option>Slovenia</option><option>South Africa</option><option>South Korea</option><option>Spain</option><option>Sri Lanka</option><option>Sudan</option><option>Sweden</option><option>Switzerland</option><option>Syria</option><option>Taiwan</option><option>Tanzania</option><option>Thailand</option><option>Trinidad and Tobago</option><option>Tunisia</option><option>Turkey</option><option>Uganda</option><option>Ukraine</option><option>United Arab Emirates</option><option>United Kingdom</option><option>United States</option><option>Uruguay</option><option>Uzbekistan</option><option>Venezuela</option><option>Vietnam</option><option>Yemen</option><option>Zambia</option><option>Zimbabwe</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="fld"><label>City *</label><input type="text" id="speaking-city" placeholder="Enter city"
-                            required></div>
-                    <div class="fld"><label>About the event and audience *</label><textarea
-                            placeholder="Format, size, and what you're hoping Elfried brings to the room..."
-                            required></textarea></div>
+                    <div class="fld">
+                        <label>City *</label>
+                        <input type="text" id="speaking-city" name="city" placeholder="Enter city" required>
+                    </div>
+                    <div class="fld">
+                        <label>About the event and audience *</label>
+                        <textarea name="event_details" placeholder="Format, size, and what you're hoping Elfried brings to the room..." required></textarea>
+                    </div>
                     <div class="fld gdpr-row">
                         <label class="gdpr-label">
                             <input type="checkbox" class="gdpr-check" required
-                                onchange="this.closest('form, .hub-form').querySelector('.btn-sub').disabled = !this.checked">
-                            <span>I agree to my data being stored and used to respond to this enquiry, in line with
-                                GDPR. Your information will never be shared with third parties.</span>
+                                onchange="this.closest('.hub-form').querySelector('.btn-sub').disabled = !this.checked">
+                            <span>I agree to my data being stored and used to respond to this enquiry, in line with GDPR. Your information will never be shared with third parties.</span>
                         </label>
                     </div>
                     <div class="form-foot">
                         <span class="form-note">Goes to Elfried's team.</span>
-                        <button class="btn-sub" onclick="submitForm(this)" disabled>Send Enquiry</button>
+                        <button class="btn-sub" type="button" onclick="submitForm(this)" disabled>Send Enquiry</button>
                     </div>
                 </div>
             </div>
@@ -2546,72 +1835,53 @@
         <div class="hub-panel">
             <div class="hub-header">
                 <button class="hub-close-btn" onclick="closeHub('collab')">Close X</button>
-                <a href="#" onclick="scrollToForm('collab-form');return false;" class="hub-quick">Explore a
-                    Collaboration &#8599;</a>
+                <a href="#" onclick="scrollToForm('collab-form');return false;" class="hub-quick">Explore a Collaboration &#8599;</a>
             </div>
             <div class="hub-body">
                 <div class="hub-ey">04 — Collaborate</div>
                 <h2 class="hub-title">Long-term trust. Not short-term noise.</h2>
-                <p class="hub-lead">"I collaborate exclusively with those who prioritise long-term trust over short-term
-                    noise."</p>
+                <p class="hub-lead">"I collaborate exclusively with those who prioritise long-term trust over short-term noise."</p>
                 <div class="hub-imgs">
                     <div class="hub-img">
                         <div class="ph">
                             <picture>
                                 <source srcset="/images/Butterfy 3ffect X Semrush X SXSW (214).webp" type="image/webp">
-                                <img src="/images/Butterfy 3ffect X Semrush X SXSW (214).jpg" alt="" loading="lazy"
-                                    decoding="async">
+                                <img src="/images/Butterfy 3ffect X Semrush X SXSW (214).jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                     <div class="hub-img">
                         <div class="ph">
                             <picture>
-                                <source srcset="/images/PBLM3478.webp" type="image/webp"><img src="/images/PBLM3478.jpg"
-                                    alt="" loading="lazy" decoding="async">
+                                <source srcset="/images/PBLM3478.webp" type="image/webp"><img src="/images/PBLM3478.jpg" alt="" loading="lazy" decoding="async">
                             </picture>
                         </div>
                     </div>
                 </div>
-                <p>As a creator with 415K+ LinkedIn followers and 500M+ impressions, Elfried has partnered with 50+
-                    brands across content, campaigns and community activations. His audience is built on trust — which
-                    is why collaborations land differently.</p>
-                <p class="em">"I only work with brands I'd genuinely stand behind. That's not a policy — it's what makes
-                    it worth doing."</p>
+                <p>As a creator with 415K+ LinkedIn followers and 500M+ impressions, Elfried has partnered with 50+ brands across content, campaigns and community activations. His audience is built on trust — which is why collaborations land differently.</p>
+                <p class="em">"I only work with brands I'd genuinely stand behind. That's not a policy — it's what makes it worth doing."</p>
                 <div class="hub-rule"></div>
                 <span class="hub-sh">Brands Elfried Has Collaborated With</span>
-                <!-- 12 logos total - 3 rows of 4 -->
                 <div class="brand-grid-3x4">
-                    <div class="brand-cell"><img src="/images/linkedin.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/adobe.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/anthropic_white_wordmark.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/notion.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/Semrush_logo.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/sprout.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/HubSpot_Logo.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/Fiverr_logo.svg" alt=""></div>
-                    <div class="brand-cell"><img src="/images/Tide_(financial_services)_logo.webp" alt="" loading="lazy"
-                            decoding="async"></div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/Apple_logo_black.svg" alt="">
-                    </div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/Vodafone_Logo.svg" alt="">
-                    </div>
-                    <div class="brand-cell"
-                        style="color:rgba(255,255,255,.2);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase">
-                        <img src="/images/Google__G__logo.svg" alt="" style="width:300px">
-                    </div>
+                    <div class="brand-cell"><img src="/images/linkedin.svg" alt="LinkedIn"></div>
+                    <div class="brand-cell"><img src="/images/adobe.svg" alt="Adobe"></div>
+                    <div class="brand-cell"><img src="/images/anthropic_white_wordmark.svg" alt="Anthropic"></div>
+                    <div class="brand-cell"><img src="/images/notion.svg" alt="Notion"></div>
+                    <div class="brand-cell"><img src="/images/Semrush_logo.svg" alt="Semrush"></div>
+                    <div class="brand-cell"><img src="/images/sprout.svg" alt="Sprout"></div>
+                    <div class="brand-cell"><img src="/images/HubSpot_Logo.svg" alt="HubSpot"></div>
+                    <div class="brand-cell"><img src="/images/Fiverr_logo.svg" alt="Fiverr"></div>
+                    <div class="brand-cell"><img src="/images/Tide_(financial_services)_logo.webp" alt="Tide" loading="lazy" decoding="async"></div>
+                    <div class="brand-cell"><img src="/images/Apple_logo_black.svg" alt="Apple"></div>
+                    <div class="brand-cell"><img src="/images/Vodafone_Logo.svg" alt="Vodafone"></div>
+                    <div class="brand-cell"><img src="/images/Google__G__logo.svg" alt="Google" style="width:300px"></div>
                 </div>
                 <span class="hub-sh" style="margin-bottom:12px">Find Elfried on:</span>
                 <div class="csocials">
                     <a href="https://linkedin.com/in/elfriedsamba" target="_blank" class="csocial">
                         <div>
                             <div class="csocial-name">LinkedIn</div>
-                            <div class="csocial-desc">415K followers · daily thinking on brand, community and growth
-                            </div>
+                            <div class="csocial-desc">415K followers · daily thinking on brand, community and growth</div>
                         </div>
                         <span class="csocial-arr">&#8599;</span>
                     </a>
@@ -2631,28 +1901,38 @@
                     </a>
                 </div>
                 <div class="hub-rule"></div>
+
+                <!-- ✅ UPDATED COLLABORATION FORM — with name attributes for n8n -->
                 <p id="collab-form" class="hub-sh" style="margin-bottom:20px">Explore a Collaboration</p>
-                <div class="hub-form">
+                <div class="hub-form" id="collaboration-form">
                     <div class="frow">
-                        <div class="fld"><label>Your Name</label><input type="text" placeholder="Full name"></div>
-                        <div class="fld"><label>Brand / Company</label><input type="text"
-                                placeholder="Who you represent"></div>
+                        <div class="fld">
+                            <label>Your Name</label>
+                            <input type="text" name="full_name" placeholder="Full name" required>
+                        </div>
+                        <div class="fld">
+                            <label>Brand / Company</label>
+                            <input type="text" name="brand_company" placeholder="Who you represent" required>
+                        </div>
                     </div>
-                    <div class="fld"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-                    <div class="fld"><label>Tell us what you have in mind</label><textarea
-                            placeholder="The collaboration, the audience, and why it makes sense for both sides..."></textarea>
+                    <div class="fld">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="fld">
+                        <label>Tell us what you have in mind</label>
+                        <textarea name="collaboration_details" placeholder="The collaboration, the audience, and why it makes sense for both sides..." required></textarea>
                     </div>
                     <div class="fld gdpr-row">
                         <label class="gdpr-label">
                             <input type="checkbox" class="gdpr-check" required
-                                onchange="this.closest('form, .hub-form').querySelector('.btn-sub').disabled = !this.checked">
-                            <span>I agree to my data being stored and used to respond to this enquiry, in line with
-                                GDPR. Your information will never be shared with third parties.</span>
+                                onchange="this.closest('.hub-form').querySelector('.btn-sub').disabled = !this.checked">
+                            <span>I agree to my data being stored and used to respond to this enquiry, in line with GDPR. Your information will never be shared with third parties.</span>
                         </label>
                     </div>
                     <div class="form-foot">
                         <span class="form-note">Goes to Elfried's team.</span>
-                        <button class="btn-sub" onclick="submitForm(this)" disabled>Send</button>
+                        <button class="btn-sub" type="button" onclick="submitForm(this)" disabled>Send</button>
                     </div>
                 </div>
             </div>
@@ -2660,11 +1940,17 @@
     </div>
 
     <script>
+        // ✅ WEBHOOK — points to live n8n on houseofsamba.io
+        const WEBHOOK_URL = 'https://butterflyeffct.app.n8n.cloud/webhook/house-of-samba-enquiries';
+
         // CURSOR
         const cur = document.getElementById('C');
         if (cur) {
-            document.addEventListener('mousemove', e => { cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px' });
-            document.querySelectorAll('a,button,[onclick],.tile,input,textarea').forEach(el => {
+            document.addEventListener('mousemove', e => {
+                cur.style.left = e.clientX + 'px';
+                cur.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a,button,[onclick],.tile,input,textarea,select').forEach(el => {
                 el.addEventListener('mouseenter', () => cur.classList.add('big'));
                 el.addEventListener('mouseleave', () => cur.classList.remove('big'));
             });
@@ -2672,20 +1958,24 @@
 
         // RIPPLE
         function ripple(e, el) {
-            const r = document.createElement('span'); r.classList.add('rpl');
+            const r = document.createElement('span');
+            r.classList.add('rpl');
             const rect = el.getBoundingClientRect();
             r.style.cssText = `position:absolute;border-radius:50%;background:rgba(255,255,255,.12);width:8px;height:8px;transform:scale(0);animation:rplA .55s linear;pointer-events:none;left:${e.clientX - rect.left - 4}px;top:${e.clientY - rect.top - 4}px`;
-            const style = document.createElement('style');
             if (!document.querySelector('#rplStyle')) {
+                const style = document.createElement('style');
                 style.id = 'rplStyle';
                 style.textContent = '@keyframes rplA{to{transform:scale(40);opacity:0}}';
                 document.head.appendChild(style);
             }
-            el.appendChild(r); setTimeout(() => r.remove(), 620);
+            el.appendChild(r);
+            setTimeout(() => r.remove(), 620);
         }
 
         // SCROLL REVEAL
-        const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') }) }, { threshold: 0.07 });
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') });
+        }, { threshold: 0.07 });
         document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
         // SMOOTH NAV
@@ -2693,36 +1983,55 @@
             a.addEventListener('click', e => {
                 const id = a.getAttribute('href').slice(1);
                 const t = document.getElementById(id);
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
+
         const nudge = document.querySelector('.follow-nudge');
-        if (nudge) nudge.addEventListener('click', e => { e.preventDefault(); document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' }) });
+        if (nudge) {
+            nudge.addEventListener('click', e => {
+                e.preventDefault();
+                document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
 
         // MOBILE NAV
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
-        function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '' }
-        hamburger.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.contains('open');
-            if (isOpen) { closeMobileMenu() }
-            else { hamburger.classList.add('open'); mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden' }
-        });
+
+        function closeMobileMenu() {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.contains('open');
+                if (isOpen) { closeMobileMenu(); }
+                else { hamburger.classList.add('open'); mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+            });
+        }
+
         document.querySelectorAll('.nav-mobile-menu a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 const id = a.getAttribute('href').slice(1);
                 const t = document.getElementById(id);
-                if (t) { e.preventDefault(); closeMobileMenu(); setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100) }
+                if (t) { e.preventDefault(); closeMobileMenu(); setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }
             });
         });
 
         // HUB
-        function openHub(id) { document.body.style.overflow = 'hidden'; document.getElementById('hub-' + id).classList.add('open') }
-        function closeHub(id) { document.getElementById('hub-' + id).classList.remove('open'); setTimeout(() => { document.body.style.overflow = '' }, 520) }
-        function scrollToForm(formId) { const el = document.getElementById(formId); if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80) }
+        function openHub(id) { document.body.style.overflow = 'hidden'; document.getElementById('hub-' + id).classList.add('open'); }
+        function closeHub(id) { document.getElementById('hub-' + id).classList.remove('open'); setTimeout(() => { document.body.style.overflow = ''; }, 520); }
+        function scrollToForm(formId) { const el = document.getElementById(formId); if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80); }
+
         document.addEventListener('keydown', e => {
             if (e.key !== 'Escape') return;
-            document.querySelectorAll('.hub-overlay.open').forEach(h => { h.classList.remove('open'); setTimeout(() => { document.body.style.overflow = '' }, 520) });
+            document.querySelectorAll('.hub-overlay.open').forEach(h => {
+                h.classList.remove('open');
+                setTimeout(() => { document.body.style.overflow = ''; }, 520);
+            });
         });
 
         // KEYWORD HIGHLIGHT
@@ -2739,9 +2048,8 @@
         const sb = document.querySelector('.hero-intro');
         if (sb) kwObs.observe(sb);
 
-        // FORM FEEDBACK
-        function submitForm(btn) {
-            const form = btn.closest('.hub-form');
+        // SUCCESS STATE
+        function showSuccessMessage(form) {
             form.style.transition = 'opacity .4s';
             form.style.opacity = '0';
             setTimeout(() => {
@@ -2754,26 +2062,89 @@
             }, 400);
         }
 
+        function getFieldValue(form, name) {
+            const field = form.querySelector(`[name="${name}"]`);
+            return field ? field.value.trim() : '';
+        }
+
+        // ✅ SUBMIT FUNCTION — reads named fields, routes by form id, posts to n8n
+        async function submitForm(btn) {
+            const form = btn.closest('.hub-form');
+            if (!form) return;
+
+            const isKeynote = form.id === 'keynote-form';
+
+            const payload = {
+                enquiry_type: isKeynote ? 'keynote' : 'collaboration',
+                submitted_at: new Date().toISOString(),
+                page_url: window.location.href,
+                utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
+                utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+                utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || ''
+            };
+
+            if (isKeynote) {
+                payload.full_name    = getFieldValue(form, 'full_name');
+                payload.organisation = getFieldValue(form, 'organisation');
+                payload.email        = getFieldValue(form, 'email');
+                payload.event_date   = getFieldValue(form, 'event_date');
+                payload.country      = getFieldValue(form, 'country');
+                payload.city         = getFieldValue(form, 'city');
+                payload.event_details = getFieldValue(form, 'event_details');
+
+                if (!payload.full_name || !payload.organisation || !payload.email || !payload.event_date || !payload.country || !payload.city || !payload.event_details) {
+                    alert('Please complete all fields.');
+                    return;
+                }
+            } else {
+                payload.full_name             = getFieldValue(form, 'full_name');
+                payload.brand_company         = getFieldValue(form, 'brand_company');
+                payload.email                 = getFieldValue(form, 'email');
+                payload.collaboration_details = getFieldValue(form, 'collaboration_details');
+
+                if (!payload.full_name || !payload.brand_company || !payload.email || !payload.collaboration_details) {
+                    alert('Please complete all fields.');
+                    return;
+                }
+            }
+
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`Status ${response.status}`);
+                showSuccessMessage(form);
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Something went wrong. Please try again.');
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
         function updateCities(countrySelect, cityInputId) {
             const cityInput = document.getElementById(cityInputId);
             if (cityInput) { cityInput.value = ''; cityInput.focus(); }
         }
 
-        // LOADER — hard 2s max
+        // LOADER
         (function () {
-            var loader = document.getElementById('loader');
+            let loader = document.getElementById('loader');
             function dismissLoader() {
                 if (!loader) return;
                 loader.classList.add('hide');
                 document.body.classList.remove('loading');
-                setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 750);
-                loader = null;
+                setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); loader = null; }, 750);
             }
-            var hardTimeout = setTimeout(dismissLoader, 3000);
-            window.addEventListener('load', function () {
-                clearTimeout(hardTimeout);
-                setTimeout(dismissLoader, 2400);
-            });
+            const hardTimeout = setTimeout(dismissLoader, 3000);
+            window.addEventListener('load', function () { clearTimeout(hardTimeout); setTimeout(dismissLoader, 2400); });
         })();
     </script>
 </body>
