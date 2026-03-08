@@ -269,15 +269,25 @@
             height: 100%
         }
 
-        /* IMAGE CROP FIX — show from top, stop just below arms */
+        /* IMAGE — anchored to top, fades out at bottom via gradient overlay */
         .hero-portrait img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 15%;
+            object-position: 50% 0%;
             display: block;
             opacity: .9;
-            object-position: 50% 0%;
+        }
+
+        /* Bottom fade to black — blends seamlessly like left/right sides */
+        .hero-right::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 45%;
+            z-index: 3;
+            background: linear-gradient(to top, var(--ink) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .hero-eyebrow {
@@ -1400,9 +1410,9 @@
                 inset: unset;
                 grid-row: 1;
                 z-index: 1;
-                height: 55vw;
-                min-height: 200px;
-                max-height: 320px;
+                height: 75vw;
+                min-height: 260px;
+                max-height: 420px;
                 overflow: hidden
             }
 
@@ -1410,12 +1420,16 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                object-position: center 15%
+                object-position: 50% 5%
             }
 
             .hero-right::before {
-                background: linear-gradient(to bottom, transparent 40%, var(--ink) 100%);
+                background: linear-gradient(to bottom, transparent 50%, var(--ink) 100%);
                 z-index: 2
+            }
+
+            .hero-right::after {
+                display: none
             }
 
             .hero-left {
@@ -1561,7 +1575,7 @@
                 <picture>
                     <source srcset="/images/Elfried_TEDxHultLondon_PrePostTalk_B&W.webp" type="image/webp">
                     <img src="/images/Elfried_TEDxHultLondon_PrePostTalk_B&W.jpg" alt="Elfried Samba"
-                        style="filter:grayscale(100%);object-position:50% 0%;object-fit:cover;width:100%;height:100%;clip-path:inset(0 0 20% 0)"
+                        style="filter:grayscale(100%);object-position:50% 0%;object-fit:cover;width:100%;height:100%"
                         loading="eager" decoding="async" fetchpriority="high">
                 </picture>
             </div>
