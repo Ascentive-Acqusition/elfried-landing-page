@@ -279,14 +279,14 @@
             opacity: .9;
         }
 
-        /* Bottom fade to black — fades from mid-image so arms dissolve naturally */
+        /* Bottom fade — dissolves at waist, trousers barely visible, crotch hidden */
         .hero-right::after {
             content: '';
             position: absolute;
             left: 0; right: 0; bottom: 0;
-            height: 70%;
+            height: 85%;
             z-index: 3;
-            background: linear-gradient(to top, var(--ink) 0%, var(--ink) 15%, rgba(8,8,8,0.85) 35%, rgba(8,8,8,0.4) 60%, transparent 100%);
+            background: linear-gradient(to top, var(--ink) 0%, var(--ink) 35%, rgba(8,8,8,0.92) 50%, rgba(8,8,8,0.6) 65%, rgba(8,8,8,0.2) 78%, transparent 100%);
             pointer-events: none;
         }
 
